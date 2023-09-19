@@ -1,0 +1,10 @@
+.Rating {
+  display: flex;
+  align-items: center;
+}
+
+.Rating * {
+  font-size: 1.1rem;
+  margin: 0 0.1rem;
+  fill: #ffc436;
+}
