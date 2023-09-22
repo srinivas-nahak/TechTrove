@@ -1,5 +1,5 @@
 import { Card } from "react-bootstrap";
-import { ProductType } from "../../products";
+import { ProductType } from "../../productType";
 import styles from "./Product.module.css";
 import { Link } from "react-router-dom";
 import Rating from "../Rating/Rating";
