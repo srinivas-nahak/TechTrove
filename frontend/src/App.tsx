@@ -7,7 +7,7 @@ import Footer from "./components/Footer";
 function App() {
   return (
     <>
-      <Header />
+      <Header className={styles.header} />
       <main className="py-3">
         <Container>
           <Outlet />

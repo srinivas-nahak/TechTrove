@@ -3,9 +3,9 @@ import { FaShoppingCart, FaUser } from "react-icons/fa"; //Font awesome libs
 import { LinkContainer } from "react-router-bootstrap";
 import logo from "../assets/tech-trove-logo.svg";
 
-const Header = () => {
+const Header: React.FC<{ className: string }> = ({ className }) => {
   return (
-    <header>
+    <header className={className}>
       <Navbar bg="dark" variant="dark" expand="md" collapseOnSelect>
         <Container>
           <LinkContainer to="/">

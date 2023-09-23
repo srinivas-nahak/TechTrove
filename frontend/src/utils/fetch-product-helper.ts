@@ -6,7 +6,6 @@ export async function loadProducts() {
 
     if (!response.ok) {
       throw new Error("Something went wrong!");
-      return;
     }
     const data = (await response.json()) as ProductType[];
 
