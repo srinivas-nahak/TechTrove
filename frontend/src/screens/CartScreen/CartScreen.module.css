@@ -1,0 +1,126 @@
+.cart-screen-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  background-color: rgb(0, 0, 0, 0.3);
+  z-index: 5;
+}
+
+.cart-items-container {
+  width: 23.5rem;
+  height: 100vh;
+  background-color: white;
+  margin-left: auto;
+  padding: 1.5rem;
+  z-index: 6;
+}
+
+.cart-items__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+/*Cross Mark*/
+.cart-items__header :nth-of-type(2) {
+  display: block;
+  border-radius: 100%;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-items__header :nth-child(2):hover {
+  background-color: rgb(255, 183, 183);
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+.cart-items-container .cart-items__card {
+  border-radius: 5rem;
+  border-radius: 1.2rem;
+  padding: 0;
+  padding-right: 1rem;
+  overflow: hidden;
+}
+
+.cart-items__details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 0.5rem 0;
+}
+
+.cart-items__title {
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.4rem;
+  padding-right: 2rem;
+}
+
+.cart-items__price-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-items__price {
+  font-size: 0.9rem;
+}
+
+/*Cart Quantity Controller*/
+.cart-items__qty-controller {
+  display: flex;
+  align-items: center;
+}
+
+.cart-items__qty-controller * {
+  height: 1.8rem;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.cart-items__qty-controller p {
+  padding: 0 0.5rem;
+  border-radius: 0.5rem 0 0 0.5rem;
+  border: 0.5px solid rgb(198, 198, 198);
+}
+
+.cart-items__qty-controller p:nth-child(3) {
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.cart-items__qty-controller p:hover {
+  background-color: rgb(235, 235, 235);
+  cursor: pointer;
+}
+
+.cart-items__qty-controller > input {
+  font-size: 0.85rem;
+  width: 2rem;
+  border-radius: 0;
+  text-align: center;
+  border: 0.5px solid rgb(198, 198, 198);
+  border-left: 0;
+  border-right: 0;
+}
+
+/*Disabling the input field controllers*/
+/* Chrome, Safari, Edge, Opera */
+.cart-items__qty-controller > input::-webkit-outer-spin-button,
+.cart-items__qty-controller > input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.cart-items__qty-controller > input[type="number"] {
+  -moz-appearance: textfield;
+}

@@ -1,24 +1,32 @@
 import { Row, Col } from "react-bootstrap";
-import { ProductType } from "../../productType";
 import styles from "./HomeScreen.module.css";
 import Product from "../../components/Product/Product";
-import { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { loadProducts } from "../../utils/fetch-product-helper";
+import { useGetProductsQuery } from "../../store/apiSlices/productApiSlice";
+import { errorHandler } from "../../utils/errorHandler";
+import Loader from "../../components/Loader";
 
 const HomeScreen = () => {
-  const productsQuery = useQuery({
-    queryKey: ["latest_products"],
-    queryFn: loadProducts,
-    refetchOnMount: true,
-  });
+  // const productsQuery = useQuery({
+  //   queryKey: ["latest_products"],
+  //   queryFn: loadProducts,
+  //   refetchOnMount: true,
+  // });
+
+  const { data: products, isLoading, error } = useGetProductsQuery();
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    return errorHandler(error);
+  }
 
   return (
     <>
       <h1>Latest Products</h1>
       <Row className={styles["latest-products"]}>
-        {productsQuery?.data?.map((product) => (
+        {products?.map((product) => (
           <Col sm={12} md={6} lg={4} xl={3} key={product._id}>
             <Product product={product} />
           </Col>

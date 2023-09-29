@@ -1,8 +1,9 @@
-import { ProductType } from "../productType";
+import { ProductType } from "./productType";
+import { BASE_URL, PRODUCTS_URL } from "./constants";
 
 export async function loadProducts() {
   try {
-    const response = await fetch("http://localhost:4000/api/products");
+    const response = await fetch(`${BASE_URL}${PRODUCTS_URL}`);
 
     if (!response.ok) {
       throw new Error("Something went wrong!");
@@ -16,9 +17,9 @@ export async function loadProducts() {
   }
 }
 
-export async function loadProduct(id: number) {
+export async function loadProduct(id: string) {
   try {
-    const response = await fetch(`http://localhost:4000/api/products/${id}`);
+    const response = await fetch(`${BASE_URL}${PRODUCTS_URL}/${id}`);
 
     if (!response.ok) {
       throw new Error("Product not found!");
