@@ -4,9 +4,17 @@ export const calculateTotalPrice = (state: CartType) => {
   //Resetting & Adding the total items price
   state.itemsPrice = 0;
 
+  //Resetting the total Quantity to calculate
+  let totalQty = 0;
+
   state.items.forEach((item) => {
     state.itemsPrice += item.product.price * item.quantity;
+
+    totalQty += item.quantity;
   });
+
+  //Adding total Quantity
+  state.totalQuantity = totalQty;
 
   //Adding Shipping Charges  ///Total price below $10 will pay shipping price
   state.shippingPrice = state.itemsPrice > 100 ? 0 : 10;

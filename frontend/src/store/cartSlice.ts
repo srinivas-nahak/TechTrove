@@ -46,15 +46,23 @@ const cartSlice = createSlice({
       } else {
         state.items = state.items.map((item) => {
           if (item.product._id === receivedItem.product._id) {
-            item.quantity += receivedItem.quantity;
+            item.quantity = receivedItem.quantity;
           }
+
           return item;
         });
       }
 
-      //Setting total quantity
-      state.totalQuantity += receivedItem.quantity;
+      return calculateTotalPrice(state);
+    },
+    removeFromCart(state, action: { payload: CartItemType }) {
+      const receivedItem = action.payload;
 
+      //Removing item if the quantity is zero
+
+      state.items = state.items.filter(
+        (item) => item.product._id !== receivedItem.product._id
+      );
       return calculateTotalPrice(state);
     },
   },

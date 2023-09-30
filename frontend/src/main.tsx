@@ -9,6 +9,7 @@ import HomeScreen from "./screens/HomeScreen/HomeScreen.tsx";
 import ProductScreen from "./screens/ProductScreen/ProductScreen.tsx";
 import { Provider } from "react-redux";
 import store from "./store/index.ts";
+import CartScreen from "./screens/CartScreen/CartScreen.tsx";
 
 const route = createBrowserRouter([
   {

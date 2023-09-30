@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { cartAction } from "../../../store/cartSlice";
 import { RootState } from "../../../store";
+import { cartScreenAction } from "../../../store/cartScreenSlice";
 
 const ProductBlock: React.FC<{ product: ProductType }> = ({ product }) => {
   const qtyRef = useRef<HTMLInputElement | null>(null);
@@ -41,7 +42,10 @@ const ProductBlock: React.FC<{ product: ProductType }> = ({ product }) => {
         quantity: qty,
       })
     );
-    navigate("/cart");
+    //navigate("/cart");
+
+    //Opening CartScreen
+    dispatch(cartScreenAction.toggleCartScreen(true));
   };
 
   return (
@@ -99,7 +103,7 @@ const ProductBlock: React.FC<{ product: ProductType }> = ({ product }) => {
                     <Col>Quantity</Col>
                     <Col>
                       <Form.Control
-                        defaultValue={0}
+                        defaultValue={1}
                         ref={qtyRef}
                         type="number"
                         min={0}
@@ -112,6 +116,7 @@ const ProductBlock: React.FC<{ product: ProductType }> = ({ product }) => {
 
               <ListGroup.Item className="py-4">
                 <Button
+                  variant="success"
                   className="btn-block"
                   disabled={product.countInStock === 0}
                   onClick={addToCartHandler}
