@@ -1,4 +1,4 @@
-export type ProductType = {
+type ProductType = {
   _id: string;
   name: string;
   image: string;
@@ -10,3 +10,12 @@ export type ProductType = {
   rating: number;
   numReviews: number;
 };
+
+type UserType = {
+  _id?: string;
+  name?: string;
+  email?: string;
+  password?: string;
+};
+
+export type { ProductType, UserType };

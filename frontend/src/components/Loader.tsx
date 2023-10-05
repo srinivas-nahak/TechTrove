@@ -1,14 +1,18 @@
 import { Spinner } from "react-bootstrap";
-const Loader = () => {
+const Loader: React.FC<{ customColor?: string; customSize?: string }> = ({
+  customColor = "black",
+  customSize = "4rem",
+}) => {
   return (
     <Spinner
       animation="border"
       role="status"
       style={{
-        height: "4rem",
-        width: "4rem",
+        height: customSize,
+        width: customSize,
         margin: "auto",
         display: "block",
+        color: customColor,
       }}
     />
   );

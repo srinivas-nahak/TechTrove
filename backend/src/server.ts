@@ -1,6 +1,8 @@
 import express from "express";
 import productRoutes from "../routes/productRoutes.js";
+import userRoutes from "../routes/userRoutes.js";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import connectDB from "../config/db.js";
 import dotenv from "dotenv";
 import { notFound, errorHandler } from "../middleware/errorMiddleware.js";
@@ -17,9 +19,16 @@ dotenv.config();
 
 const port = process.env.PORT || 4000;
 
+//Body parser middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+//Cookie Parser middleware
+app.use(cookieParser());
+
 //Redirecting pages
 app.use("/api/products", productRoutes);
-app.use(express.json()); //Activating json parsing in body
+app.use("/api/users", userRoutes);
 
 //Error Handlers
 app.use(notFound);

@@ -8,7 +8,6 @@ const getAllProducts = asyncHandler(async (req, res) => {
   const products = await Products.find({});
 
   if (!products) {
-    //const error = new Error("Products not found!");
     res.status(400);
 
     throw new Error("Products Not Found!!");

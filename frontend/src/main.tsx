@@ -9,7 +9,8 @@ import HomeScreen from "./screens/HomeScreen/HomeScreen.tsx";
 import ProductScreen from "./screens/ProductScreen/ProductScreen.tsx";
 import { Provider } from "react-redux";
 import store from "./store/index.ts";
-import CartScreen from "./screens/CartScreen/CartScreen.tsx";
+import LoginScreen from "./screens/AuthScreen/LoginScreen/LoginScreen.tsx";
+import SignupScreen from "./screens/AuthScreen/SignUpScreen/SignupScreen.tsx";
 
 const route = createBrowserRouter([
   {
@@ -18,6 +19,8 @@ const route = createBrowserRouter([
     children: [
       { index: true, element: <HomeScreen /> },
       { path: "product/:id", element: <ProductScreen /> },
+      { path: "login", element: <LoginScreen /> },
+      { path: "signup", element: <SignupScreen /> },
     ],
   },
 ]);

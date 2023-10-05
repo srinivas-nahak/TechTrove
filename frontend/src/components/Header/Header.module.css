@@ -1,0 +1,18 @@
+.Header {
+  position: sticky;
+  top: -1px;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 5;
+}
+
+.header-shopping-cart {
+  position: relative;
+}
+
+.header-shopping-cart-badge {
+  position: "absolute";
+  top: 30%;
+  left: 0;
+  transform: translate(50%, -50%);
+}

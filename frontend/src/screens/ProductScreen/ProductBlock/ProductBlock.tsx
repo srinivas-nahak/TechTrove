@@ -9,7 +9,7 @@ import {
 } from "react-bootstrap";
 import styles from "./ProductBlock.module.css";
 import Rating from "../../../components/Rating/Rating";
-import { ProductType } from "../../../utils/productType";
+import { ProductType } from "../../../utils/customTypes";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";

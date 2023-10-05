@@ -6,7 +6,7 @@
   "main": "server.js",
   "scripts": {
     "build": "tsc",
-    "start": "nodemon backend/src/server.ts",
+    "start": "nodemon --exec npx ts-node --esm backend/src/server.ts",
     "client": "npm run dev --prefix ./frontend",
     "dev": "concurrently \"npm start \" \"npm run client\"",
     "data:import": "npx ts-node --esm  backend/src/seeder.ts",
@@ -27,8 +27,10 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^7.5.2"
   }
 }

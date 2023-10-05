@@ -1,4 +1,4 @@
-import { ProductType } from "./productType";
+import { ProductType } from "./customTypes";
 import { BASE_URL, PRODUCTS_URL } from "./constants";
 
 export async function loadProducts() {

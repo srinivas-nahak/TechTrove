@@ -1,4 +1,3 @@
-import productsData from "../data/products.js";
 import express from "express";
 import {
   getProductById,
@@ -7,9 +6,9 @@ import {
 
 const router = express.Router();
 
-router.get("", getAllProducts);
+router.route("/").get(getAllProducts);
 
-router.get("/:id", getProductById);
+router.route("/:id").get(getProductById);
 
 export default router;
 
