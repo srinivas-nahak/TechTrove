@@ -13,7 +13,7 @@ const orderApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Orders"],
     }),
-    deleteOrder: builder.mutation<void, string>({
+    cancelOrder: builder.mutation<void, string>({
       query: (orderId) => ({
         url: `${ORDERS_URL}/${orderId}`,
         method: "DELETE",
@@ -37,11 +37,11 @@ const orderApiSlice = apiSlice.injectEndpoints({
       }),
       providesTags: ["Orders"],
     }),
-    updateOrderAdmin: builder.mutation<void, string>({
-      query: (orderId: string) => ({
-        url: `${ORDERS_URL}/${orderId}`,
+    updateOrderAdmin: builder.mutation<OrderType, OrderType>({
+      query: (order) => ({
+        url: `${ORDERS_URL}/${order._id}`,
         method: "PATCH",
-        //body: JSON.stringify({ orderId }),
+        body: { orderStatus: order.isDelivered },
         credentials: "include",
       }),
       invalidatesTags: ["Orders"],
@@ -51,7 +51,7 @@ const orderApiSlice = apiSlice.injectEndpoints({
 
 export const {
   usePlaceOrderMutation,
-  useDeleteOrderMutation,
+  useCancelOrderMutation,
   useGetOrdersQuery,
   useGetOrdersAdminQuery,
   useUpdateOrderAdminMutation,

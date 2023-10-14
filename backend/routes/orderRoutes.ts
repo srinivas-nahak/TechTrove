@@ -15,6 +15,7 @@ router
   .route("/:orderId")
   .delete(protect, cancelOrder)
   .patch(protect, admin, updateOrderStatus);
+
 router.route("/admin").get(protect, admin, getOrdersAdmin);
 
 export default router;

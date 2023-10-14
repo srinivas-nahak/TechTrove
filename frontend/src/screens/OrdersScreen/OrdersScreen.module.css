@@ -50,7 +50,7 @@
   color: var(--semi-gray-color);
 }
 
-.order-item-details-container {
+.order-item-body__details-container {
   overflow: hidden;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -117,4 +117,34 @@
   background-color: rgb(224, 97, 97);
   border-radius: 50%;
   color: #e7e7e7;
+}
+
+/*Optimizing for all screens*/
+@media screen and (max-width: 900px) {
+  .order-item-container {
+    width: 100%;
+    margin: 1rem auto;
+    padding: 1.5rem 2rem;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .order-item-header {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .order-item-header:nth-child(1) {
+    flex: 1;
+  }
+
+  .order-item-details {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .order-item-details > small {
+    margin-top: 0.5rem;
+    padding-right: 1.5rem;
+  }
 }

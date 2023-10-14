@@ -1,41 +1,71 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Loader from "../../components/Loader";
 import Card from "../../components/UI/Card/Card";
 import {
+  useCancelOrderMutation,
   useGetOrdersAdminQuery,
   useGetOrdersQuery,
   useUpdateOrderAdminMutation,
 } from "../../store/apiSlices/orderApiSlice";
 import { OrderType } from "../../utils/customTypes";
 import styles from "./OrdersScreen.module.css";
-import { FaCheck, FaChevronDown, FaChevronUp, FaTimes } from "react-icons/fa";
+import {
+  FaCheck,
+  FaChevronDown,
+  FaChevronUp,
+  FaTimes,
+  FaTrash,
+} from "react-icons/fa";
 import CustomModalDialog from "../../components/CustomModalDialog/CustomModalDialog";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
+import apiSlice from "../../store/apiSlices/apiSlice";
 
+let updatingOrderId: undefined | string = undefined;
 const OrdersScreen = () => {
+  const dispatch = useDispatch();
+
   const [selectedOrder, setSelectedOrder] = useState<number | undefined>(
     undefined
   );
 
-  const [updatingOrderId, setUpdatingOrderId] = useState<string | undefined>(
-    undefined
-  );
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
   const userInfo = useSelector((state: RootState) => state.authReducer);
 
+  //Resetting all the query caches
+  useEffect(() => {
+    dispatch(apiSlice.util.resetApiState());
+  }, []);
+
   const {
     data: orders,
-    isLoading,
+    isLoading: isOrderItemsLoading,
+    isSuccess: isOrderItemsSuccess,
     isError,
     error,
   } = userInfo.isAdmin ? useGetOrdersAdminQuery() : useGetOrdersQuery();
 
-  const [updateOrderAdmin, { isLoading: updateLoading }] =
-    useUpdateOrderAdminMutation();
+  const [
+    updateOrderAdmin,
+    {
+      data: updatedOrder,
+      isLoading: isUpdateLoading,
+      isSuccess: isUpdateSuccess,
+    },
+  ] = useUpdateOrderAdminMutation();
 
-  if (isLoading) {
+  const [
+    cancelOrder,
+    { isLoading: isCancelledOrderLoading, isSuccess: isCancelledOrderSuccess },
+  ] = useCancelOrderMutation();
+
+  if (isOrderItemsLoading) {
     return <Loader />;
+  }
+
+  if (!orders || orders?.length === 0) {
+    return <h1 style={{ textAlign: "center" }}>No orders found!</h1>;
   }
 
   const orderItemClickHandler = (index: number) => {
@@ -47,11 +77,40 @@ const OrdersScreen = () => {
     });
   };
 
-  const orderHandler = (orderId: string) => {
+  const orderHandler = async (order: OrderType) => {
+    updatingOrderId = order._id;
     if (userInfo.isAdmin) {
-      setUpdatingOrderId(orderId);
-      updateOrderAdmin(orderId);
+      //Mutating the order
+      await updateOrderAdmin({ ...order, isDelivered: !order.isDelivered });
+    } else {
+      setShowDeleteDialog(true);
     }
+  };
+
+  const cancelOrderHandler = async () => {
+    setShowDeleteDialog(false);
+    await cancelOrder(updatingOrderId!);
+    //updatingOrderId = undefined;
+  };
+
+  const getOrderStatus = (orderId: string, deliveryStatus: boolean) => {
+    if (updatingOrderId === orderId && isUpdateLoading) {
+      return <Loader customSize="2rem" />;
+    }
+
+    return (
+      <li className={styles["order-item-status"]}>
+        <span
+          className={styles["order-item-status-dot"]}
+          style={
+            deliveryStatus
+              ? { backgroundColor: "#36ba3c" }
+              : { backgroundColor: "orange" }
+          }
+        ></span>
+        {deliveryStatus ? "Delivered" : "In transit"}
+      </li>
+    );
   };
 
   const getStyle = (index: number) => {
@@ -75,7 +134,7 @@ const OrdersScreen = () => {
   const getProductsList = (orderedProducts: any[], index: number) => {
     return (
       <div
-        className={styles["order-item-details-container"]}
+        className={styles["order-item-body__details-container"]}
         style={getStyle(index)}
       >
         {orderedProducts.map((product) => {
@@ -100,8 +159,13 @@ const OrdersScreen = () => {
 
   return (
     <>
-      {false && (
-        <CustomModalDialog message="Delete the Order?" dialogType="choice" />
+      {showDeleteDialog && (
+        <CustomModalDialog
+          message="Delete the Order?"
+          dialogType="choice"
+          clickHandler={cancelOrderHandler}
+          cancelClickHandler={() => setShowDeleteDialog(false)}
+        />
       )}
       <div className={styles["orders-container"]}>
         {orders &&
@@ -115,58 +179,55 @@ const OrdersScreen = () => {
             } as Intl.DateTimeFormatOptions;
             const readableDate = date.toLocaleDateString("en-US", options);
 
-            if (updatingOrderId === order._id && updateLoading) {
-              return <Loader />;
-            }
-
             return (
               <Card
                 className={styles["order-item-container"]}
                 key={order._id}
                 onClick={() => orderItemClickHandler(index)}
               >
-                <ul className={styles["order-item-title"]}>
-                  <li className={styles["order-item-id"]}>
-                    <div>
-                      Order # {order._id}{" "}
-                      <span>
-                        {index !== undefined && index === selectedOrder ? (
-                          <FaChevronUp />
+                {isCancelledOrderLoading && updatingOrderId === order._id ? (
+                  <Loader customSize="2rem" />
+                ) : (
+                  <ul className={styles["order-item-header"]}>
+                    <li className={styles["order-item-id"]}>
+                      <div>
+                        Order # {order._id}{" "}
+                        <span>
+                          {index !== undefined && index === selectedOrder ? (
+                            <FaChevronUp />
+                          ) : (
+                            <FaChevronDown />
+                          )}
+                        </span>
+                      </div>
+                      <small>{readableDate}</small>
+                    </li>
+
+                    {getOrderStatus(order._id!, order.isDelivered)}
+                    <li className={styles["order-item-price"]}>
+                      <div>
+                        ${order.totalPrice}{" "}
+                        <small style={{ display: "block" }}>(with taxes)</small>
+                      </div>
+                      <span
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          orderHandler(order);
+                        }}
+                      >
+                        {userInfo.isAdmin ? (
+                          !order.isDelivered ? (
+                            <FaCheck />
+                          ) : (
+                            <FaTimes />
+                          )
                         ) : (
-                          <FaChevronDown />
+                          <FaTrash />
                         )}
                       </span>
-                    </div>
-                    <small>{readableDate}</small>
-                  </li>
-
-                  <li className={styles["order-item-status"]}>
-                    <span
-                      className={styles["order-item-status-dot"]}
-                      style={
-                        order.isDelivered
-                          ? { backgroundColor: "#36ba3c" }
-                          : { backgroundColor: "orange" }
-                      }
-                    ></span>
-                    {order.isDelivered ? "Delivered" : "In transit"}
-                  </li>
-                  <li className={styles["order-item-price"]}>
-                    <div>
-                      ${order.totalPrice}{" "}
-                      <small style={{ display: "block" }}>(with taxes)</small>
-                    </div>
-                    <span
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        orderHandler(order._id!);
-                      }}
-                    >
-                      {!order.isDelivered &&
-                        (userInfo.isAdmin ? <FaCheck /> : <FaTimes />)}
-                    </span>
-                  </li>
-                </ul>
+                    </li>
+                  </ul>
+                )}
                 {getProductsList(order.orderedItems, index)}
               </Card>
             );

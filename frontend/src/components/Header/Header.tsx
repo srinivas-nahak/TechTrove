@@ -58,21 +58,23 @@ const Header = () => {
             className="justify-content-end"
           >
             <Nav className="ms-auto">
-              <Nav.Link
-                onClick={cartClickHandler}
-                className={styles["header-shopping-cart"]}
-              >
-                <FaShoppingCart />
-                {totalCartQuantity > 0 && (
-                  <Badge
-                    pill
-                    bg="success"
-                    className={`ms-1 ${styles["header-shopping-cart-badge"]}`}
-                  >
-                    {totalCartQuantity}
-                  </Badge>
-                )}
-              </Nav.Link>
+              {(!userInfo || !userInfo.isAdmin) && (
+                <Nav.Link
+                  onClick={cartClickHandler}
+                  className={styles["header-shopping-cart"]}
+                >
+                  <FaShoppingCart />
+                  {totalCartQuantity > 0 && (
+                    <Badge
+                      pill
+                      bg="success"
+                      className={`ms-1 ${styles["header-shopping-cart-badge"]}`}
+                    >
+                      {totalCartQuantity}
+                    </Badge>
+                  )}
+                </Nav.Link>
+              )}
 
               <Nav.Link onClick={userClickHandler} ref={loginIconRef}>
                 <FaUser />

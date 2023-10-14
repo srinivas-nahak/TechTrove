@@ -1,7 +1,6 @@
 import ReactDOM from "react-dom";
 import Card from "../UI/Card/Card";
 import styles from "./CustomModalDialog.module.css";
-import { useDispatch } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import lottie from "lottie-web";
 import tickAnimation from "../../assets/tickAnimation.json";
@@ -13,15 +12,16 @@ const CustomModalDialog: React.FC<{
   btnText?: string;
   clickHandler?: () => void;
   dialogType?: "success" | "failure" | "choice";
+  cancelClickHandler?: () => void;
   btnAnimationEndHandler?: () => void;
 }> = ({
   message,
   clickHandler,
   btnText = "Okay",
   dialogType = "success",
+  cancelClickHandler,
   btnAnimationEndHandler,
 }) => {
-  const dispatch = useDispatch();
   const animationContainer = useRef<HTMLDivElement | null>(null);
   const [btnAnimationProgress, setBtnAnimationProgress] = useState(100);
   const requestIdRef = useRef(0);
@@ -31,7 +31,7 @@ const CustomModalDialog: React.FC<{
       return (
         <div className={styles["modal-dialog__choice-btn-container"]}>
           <CustomButton
-            onClick={clickHandler}
+            onClick={cancelClickHandler}
             className={styles["modal-dialog__choice-positive"]}
           >
             Cancel

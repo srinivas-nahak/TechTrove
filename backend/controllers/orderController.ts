@@ -43,7 +43,9 @@ const getPlacedOrders = asyncHandler(async (req, res) => {
   const user = req.user;
 
   try {
-    const placedOrders = await Orders.find({ user: user._id });
+    const placedOrders = await Orders.find({ user: user._id }).sort({
+      paidAt: -1,
+    });
     res.json(placedOrders);
   } catch (error) {
     res.status(400);
@@ -83,20 +85,22 @@ const getOrdersAdmin = asyncHandler(async (req, res) => {
 //@access   Private/Admin
 const updateOrderStatus = asyncHandler(async (req, res) => {
   const orderId = req.params.orderId;
+  const orderStatus = req.body.orderStatus;
 
   try {
     const updateOrder = await Orders.findByIdAndUpdate(
       orderId,
       {
         $set: {
-          isDelivered: true,
+          isDelivered: orderStatus,
           deliveredAt: Date.now(),
         },
       },
       { new: true }
     );
 
-    res.json({ message: "Order updated successfully!" });
+    res.json({ updateOrder });
+    //res.json({ message: "Order updated successfully!" });
   } catch (error) {
     console.log(error);
 

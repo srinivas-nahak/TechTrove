@@ -56,6 +56,7 @@ const LoginScreen = () => {
 
     if (!("error" in response)) {
       dispatch(authAction.setCredentials(response.data));
+      dispatch(btnLoaderAction.addProperty({ showLoader: false }));
       navigate("/");
     }
   };
