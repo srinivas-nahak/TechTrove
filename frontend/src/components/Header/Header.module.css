@@ -12,7 +12,5 @@
 
 .header-shopping-cart-badge {
   position: "absolute";
-  top: 30%;
-  left: 0;
-  transform: translate(50%, -50%);
+  transform: translate(-50%, -50%);
 }

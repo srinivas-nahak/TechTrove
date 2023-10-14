@@ -1,11 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./CustomDropdown.module.css";
 import { useDispatch } from "react-redux";
-import {
-  useLoginMutation,
-  useLogoutMutation,
-} from "../../../store/apiSlices/userApiSlice";
+import { useLogoutMutation } from "../../../store/apiSlices/userApiSlice";
 import { authAction } from "../../../store/authSlice";
+import { useLocation, useNavigate } from "react-router-dom";
 
 type CustomDropDownType<T extends HTMLElement> = {
   elementRef: React.MutableRefObject<T | null>;
@@ -16,6 +14,8 @@ const CustomDropdown: React.FC<CustomDropDownType<HTMLElement>> = ({
   elementRef,
   closeDialog,
 }) => {
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
   const dispatch = useDispatch();
   const [logout] = useLogoutMutation();
 
@@ -39,7 +39,12 @@ const CustomDropdown: React.FC<CustomDropDownType<HTMLElement>> = ({
       dialogPosition.left = elementRect!.left;
     }
 
-    setDialogPosition((currentPos) => ({ ...defaultDialogPosition }));
+    setDialogPosition((_) => ({ ...defaultDialogPosition }));
+  };
+
+  const openOrdersHandler = () => {
+    closeDialog();
+    navigate("/orders");
   };
 
   //Closing the dialog if clicked on the outside area
@@ -64,10 +69,17 @@ const CustomDropdown: React.FC<CustomDropDownType<HTMLElement>> = ({
   }, []);
 
   //Dropdown Click Handler
-  const logoutHandler = () => {
-    logout();
-    dispatch(authAction.removeCredentials());
-    closeDialog();
+  const logoutHandler = async () => {
+    try {
+      await logout();
+      dispatch(authAction.removeCredentials());
+      closeDialog();
+
+      //If current path is not home then navigating to home
+      if (pathname !== "/") {
+        navigate("/");
+      }
+    } catch (error) {}
   };
 
   return (
@@ -80,7 +92,7 @@ const CustomDropdown: React.FC<CustomDropDownType<HTMLElement>> = ({
       ref={customDropDownRef}
     >
       <p>Profile</p>
-      <p>My Orders</p>
+      <p onClick={openOrdersHandler}>My Orders</p>
       <p onClick={logoutHandler}>Logout</p>
     </div>
   );

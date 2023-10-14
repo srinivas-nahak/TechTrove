@@ -20,7 +20,7 @@ export const calculateTotalPrice = (state: CartType) => {
   state.shippingPrice = state.itemsPrice > 100 ? 0 : 10;
 
   //Adding 15% tax
-  state.taxPrice = state.itemsPrice * 0.15;
+  state.taxPrice = Number((state.itemsPrice * 0.15).toFixed(2));
 
   //Calculating the total price and keeping till 2 decimals
   const calculatedTotalPrice =

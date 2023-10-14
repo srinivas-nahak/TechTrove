@@ -16,6 +16,7 @@ const userApiSlice = apiSlice.injectEndpoints({
         url: `${USERS_URL}/login`,
         method: "POST",
         body: userData,
+        credentials: "include",
       }),
     }),
     logout: builder.mutation<void, void>({
@@ -45,18 +46,18 @@ const userApiSlice = apiSlice.injectEndpoints({
     }),
     getUserById: builder.mutation<UserType, string>({
       query: (id) => ({
-        url: `${USERS_URL}/:${id}`,
+        url: `${USERS_URL}/${id}`,
       }),
     }),
     deleteUser: builder.mutation<UserType, string>({
       query: (id) => ({
-        url: `${USERS_URL}/:${id}`,
+        url: `${USERS_URL}/${id}`,
         method: "DELETE",
       }),
     }),
     updateUser: builder.mutation({
       query: (userData: UserType) => ({
-        url: `${USERS_URL}/:${userData._id}`,
+        url: `${USERS_URL}/${userData._id}`,
         method: "PUT",
         body: userData,
       }),

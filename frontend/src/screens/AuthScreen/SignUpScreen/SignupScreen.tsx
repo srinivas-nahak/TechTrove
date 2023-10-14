@@ -1,44 +1,67 @@
 import { LinkContainer } from "react-router-bootstrap";
 import styles from "../AuthScreen.module.css";
 import { useSignUpMutation } from "../../../store/apiSlices/userApiSlice";
-import { ChangeEventHandler, FormEventHandler, useState } from "react";
+import {
+  ChangeEventHandler,
+  FormEventHandler,
+  useEffect,
+  useState,
+} from "react";
 import { UserType } from "../../../utils/customTypes";
 import { authAction } from "../../../store/authSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../../components/Loader";
 import { errorMessageExtractor } from "../../../utils/errorHandler";
+import userFormValidator from "../../../hooks/userFormValidator";
+import CustomInputGroup from "../../../components/CustomInputGroup/CustomInputGroup";
+import CustomButton from "../../../components/UI/CustomButton/CustomButton";
 
 const SignupScreen = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [signup, { isError, isLoading, error }] = useSignUpMutation();
-  const [inputUsername, setInputUsername] = useState("");
-  const [inputEmail, setInputEmail] = useState("");
-  const [inputPassword, setInputPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState<JSX.Element | null>(null);
 
-  const errorText = (message: string) => (
-    <p className="text-danger text-start">{message}</p>
-  );
+  //Using custom hook for form data handling
+  const {
+    enteredValue: inputUsername,
+    valueInputHandler: usernameInputHandler,
+  } = userFormValidator();
 
-  const usernameInputHandler: ChangeEventHandler<HTMLInputElement> = (
-    event
-  ) => {
-    setInputUsername(event.target.value);
-  };
+  const { enteredValue: inputEmail, valueInputHandler: emailInputHandler } =
+    userFormValidator();
 
-  const emailInputHandler: ChangeEventHandler<HTMLInputElement> = (event) => {
-    setInputEmail(event.target.value);
-  };
+  const {
+    enteredValue: inputPassword,
+    valueInputHandler: passwordInputHandler,
+  } = userFormValidator();
 
-  const passwordInputHandler: ChangeEventHandler<HTMLInputElement> = (
-    event
-  ) => {
-    setInputPassword(event.target.value);
-  };
+  const {
+    enteredValue: inputConfirmPassword,
+    valueInputHandler: confirmPasswordInputHandler,
+  } = userFormValidator();
+
+  useEffect(() => {
+    if (isError) {
+      setErrorMessage(
+        <p className="text-danger text-start">
+          {errorMessageExtractor(error!)}
+        </p>
+      );
+    }
+  }, [isError]);
 
   const handleSubmit: FormEventHandler = async (event) => {
     event.preventDefault();
+
+    if (inputPassword !== inputConfirmPassword) {
+      setErrorMessage(
+        <p className="text-danger text-start">Passwords are not matching!</p>
+      );
+
+      return;
+    }
 
     const userData: UserType = {
       name: inputUsername,
@@ -58,50 +81,50 @@ const SignupScreen = () => {
     <div className={styles["auth-page-container"]}>
       <h1>Sign Up</h1>
       <form className={styles["auth-page__form"]} onSubmit={handleSubmit}>
-        <div className={styles["auth-page__input-group"]}>
-          <label htmlFor="email-signup">Username</label>
-          <input
-            id="username-signup"
-            name="username-signup"
-            type="text"
-            placeholder="Enter your username"
-            value={inputUsername}
-            onChange={usernameInputHandler}
-            required
-          />
-        </div>
-        <div className={styles["auth-page__input-group"]}>
-          <label htmlFor="email-signup">Email</label>
-          <input
-            id="email-signup"
-            name="email-signup"
-            type="email"
-            placeholder="Enter your email"
-            value={inputEmail}
-            onChange={emailInputHandler}
-            required
-          />
-        </div>
-        <div className={styles["auth-page__input-group"]}>
-          <label htmlFor="password-signup">Password</label>
-          <input
-            id="password-signup"
-            name="password-signup"
-            type="password"
-            placeholder="Enter your password"
-            value={inputPassword}
-            onChange={passwordInputHandler}
-            required
-          />
-        </div>
-        {isError && errorText(errorMessageExtractor(error!))}
-        <button type="submit">
-          {isLoading ? (
-            <Loader customColor="white" customSize="1.5rem" />
-          ) : (
-            "Sign Up Now"
-          )}
-        </button>
+        <CustomInputGroup
+          label="Username"
+          id="username-signup"
+          name="username-signup"
+          type="text"
+          placeholder="Enter your username"
+          value={inputUsername}
+          onChange={usernameInputHandler}
+          required
+        />
+        <CustomInputGroup
+          label="Email"
+          id="email-signup"
+          name="email-signup"
+          type="email"
+          placeholder="Enter your email"
+          value={inputEmail}
+          onChange={emailInputHandler}
+          required
+        />
+        <CustomInputGroup
+          label="Password"
+          id="password-signup"
+          name="password-signup"
+          type="password"
+          placeholder="Enter your password"
+          value={inputPassword}
+          onChange={passwordInputHandler}
+          required
+        />
+        <CustomInputGroup
+          label="Confirm Password"
+          id="confirm-password-signup"
+          name="confirm-password-signup"
+          type="password"
+          placeholder="Confirm your password"
+          value={inputConfirmPassword}
+          onChange={confirmPasswordInputHandler}
+          required
+        />
+        {errorMessage && errorMessage} {/*//If error message is not null */}
+        <CustomButton showLoader={isLoading} type="submit">
+          Sign Up Now
+        </CustomButton>
       </form>
       <p className={styles["login-signup-text"]}>
         Already have an account?{" "}

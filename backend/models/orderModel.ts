@@ -7,23 +7,33 @@ const orderSchema = new mongoose.Schema(
       required: true,
       ref: "Users", //Reference to the Users collection
     },
-    orderItems: [
+    orderedItems: [
       {
+        productId: {
+          type: mongoose.Schema.Types.ObjectId,
+          required: true,
+          ref: "Products",
+          set: (value: string) => new mongoose.Types.ObjectId(value),
+        },
         name: { type: String, required: true },
         qty: { type: Number, required: true },
         image: { type: String, required: true },
         price: { type: Number, required: true },
-        product: {
-          type: mongoose.Schema.Types.ObjectId,
-          required: true,
-          ref: "Products",
-        },
       },
     ],
     shippingAddress: {
       address: { type: String, required: true },
       city: { type: String, required: true },
-      postalCode: { type: Number, required: true, min: 6, max: 6 },
+      postalCode: {
+        type: Number,
+        required: true,
+        validate: {
+          validator: (value: number) => {
+            return value.toString().length === 6;
+          },
+          message: "Zip code must be 6 characters long",
+        },
+      },
       country: { type: String, required: true },
     },
     paymentMethod: {

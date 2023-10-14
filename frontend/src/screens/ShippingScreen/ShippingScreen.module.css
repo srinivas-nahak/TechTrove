@@ -1,0 +1,30 @@
+.shipping-screen-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.shipping-form {
+  flex-basis: 45%;
+}
+
+.shipping-order-summary {
+  flex-basis: 25rem;
+  margin-left: 10%;
+}
+
+.shipping-order-summary > .shipping-order-summary__price {
+  height: auto;
+  position: static;
+  padding: 0;
+  margin: 0;
+}
+
+.shipping-order-summary__item-title {
+  margin-top: 2rem;
+  font-weight: 500;
+}
+
+.shipping-order-summary > .shipping-order-summary__items {
+  height: 50%;
+  width: 20rem;
+}

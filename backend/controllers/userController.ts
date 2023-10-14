@@ -22,6 +22,7 @@ const loginUser = asyncHandler(async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
+      isAdmin: user.isAdmin,
     });
   } else {
     res.status(401);
@@ -73,11 +74,8 @@ const logoutUser = asyncHandler(async (req, res) => {
 //@access   Private
 const getUserProfile = asyncHandler(async (req, res) => {
   const user = req.user;
-  if (user) {
-    res.json(user);
-  } else {
-    res.json({ message: "Not logged in!" });
-  }
+
+  res.json(user);
 });
 
 //@desc     Update user profile

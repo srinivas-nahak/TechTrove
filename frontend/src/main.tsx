@@ -11,6 +11,8 @@ import { Provider } from "react-redux";
 import store from "./store/index.ts";
 import LoginScreen from "./screens/AuthScreen/LoginScreen/LoginScreen.tsx";
 import SignupScreen from "./screens/AuthScreen/SignUpScreen/SignupScreen.tsx";
+import ShippingScreen from "./screens/ShippingScreen/ShippingScreen.tsx";
+import OrdersScreen from "./screens/OrdersScreen/OrdersScreen.tsx";
 
 const route = createBrowserRouter([
   {
@@ -21,6 +23,8 @@ const route = createBrowserRouter([
       { path: "product/:id", element: <ProductScreen /> },
       { path: "login", element: <LoginScreen /> },
       { path: "signup", element: <SignupScreen /> },
+      { path: "shipping", element: <ShippingScreen /> },
+      { path: "orders", element: <OrdersScreen /> },
     ],
   },
 ]);

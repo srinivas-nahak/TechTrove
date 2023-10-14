@@ -10,8 +10,11 @@ import { LinkContainer } from "react-router-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { authAction } from "../../../store/authSlice.js";
-import Loader from "../../../components/Loader.js";
 import { RootState } from "../../../store/index.js";
+import userFormValidator from "../../../hooks/userFormValidator.js";
+import CustomInputGroup from "../../../components/CustomInputGroup/CustomInputGroup.js";
+import CustomButton from "../../../components/UI/CustomButton/CustomButton.js";
+import { btnLoaderAction } from "../../../store/buttonLoaderSlice.js";
 
 const LoginScreen = () => {
   const navigate = useNavigate();
@@ -23,29 +26,23 @@ const LoginScreen = () => {
   const searchParams = new URLSearchParams(search);
   const redirect = searchParams.get("redirect") || "/";
 
-  //Input Field states
-  const [inputEmail, setInputEmail] = useState("");
-  const [inputPassword, setInputPassword] = useState("");
+  //Using custom hooks for Input Field states
+  const { enteredValue: inputEmail, valueInputHandler: emailInputHandler } =
+    userFormValidator();
+  const {
+    enteredValue: inputPassword,
+    valueInputHandler: passwordInputHandler,
+  } = userFormValidator();
 
   const errorText = (
     <p className="text-danger text-start">Invalid email or password!</p>
   );
 
   useEffect(() => {
-    if (userInfo) {
+    if (userInfo && userInfo._id) {
       navigate(redirect);
     }
   }, [userInfo, redirect, navigate]);
-
-  const emailInputHandler: ChangeEventHandler<HTMLInputElement> = (event) => {
-    setInputEmail(event.target.value);
-  };
-
-  const passwordInputHandler: ChangeEventHandler<HTMLInputElement> = (
-    event
-  ) => {
-    setInputPassword(event.target.value);
-  };
 
   const handleSubmit: FormEventHandler = async (event) => {
     event.preventDefault();
@@ -63,6 +60,10 @@ const LoginScreen = () => {
     }
   };
 
+  if (isLoading) {
+    dispatch(btnLoaderAction.addProperty({ showLoader: true }));
+  }
+
   // if (error) {
   //   return errorHandler(error);
   // }
@@ -71,39 +72,30 @@ const LoginScreen = () => {
     <div className={styles["auth-page-container"]}>
       <h1>Login</h1>
       <form className={styles["auth-page__form"]} onSubmit={handleSubmit}>
-        <div className={styles["auth-page__input-group"]}>
-          <label htmlFor="email-login">Email</label>
-          <input
-            id="email-login"
-            name="email-login"
-            type="email"
-            placeholder="Enter your email"
-            value={inputEmail}
-            required
-            onChange={emailInputHandler}
-          />
-        </div>
-        <div className={styles["auth-page__input-group"]}>
-          <label htmlFor="password-login">Password</label>
-          <input
-            id="password-login"
-            name="password-login"
-            type="password"
-            placeholder="Enter your password"
-            value={inputPassword}
-            required
-            onChange={passwordInputHandler}
-          />
-        </div>
+        <CustomInputGroup
+          label="Email"
+          id="email-login"
+          name="email-login"
+          type="email"
+          placeholder="Enter your email"
+          value={inputEmail}
+          required
+          onChange={emailInputHandler}
+        />
+        <CustomInputGroup
+          label="Password"
+          id="password-login"
+          name="password-login"
+          type="password"
+          placeholder="Enter your password"
+          value={inputPassword}
+          required
+          onChange={passwordInputHandler}
+        />
 
         {isError && errorText}
-        <button type="submit">
-          {isLoading ? (
-            <Loader customColor="white" customSize="1.5rem" />
-          ) : (
-            "Login Now"
-          )}
-        </button>
+
+        <CustomButton type="submit">Login Now</CustomButton>
       </form>
       <p className={styles["login-signup-text"]}>
         Don't have an account?{" "}

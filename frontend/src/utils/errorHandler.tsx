@@ -6,9 +6,9 @@ export const errorHandler = (error: FetchBaseQueryError | SerializedError) => {
   if ("status" in error) {
     // you can access all properties of `FetchBaseQueryError` here
     const errData = "error" in error ? error.error : JSON.stringify(error.data);
-    const errMsg = JSON.parse(errData).message;
+    //const errMsg = JSON.parse(errData).message;
 
-    return <Message variant="danger" message={errMsg} />;
+    return <Message variant="danger" message={errData} />;
   } else {
     // you can access all properties of `SerializedError` here
     return (

@@ -7,7 +7,7 @@ import { RootState } from "../../store";
 import { cartScreenAction } from "../../store/cartScreenSlice";
 import { useNavigate } from "react-router-dom";
 import styles from "./Header.module.css";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import CustomDropdown from "../UI/CustomDropdown/CustomDropdown";
 
 const Header = () => {
@@ -60,21 +60,14 @@ const Header = () => {
             <Nav className="ms-auto">
               <Nav.Link
                 onClick={cartClickHandler}
-                style={{ position: "relative" }}
-                className="me-2"
+                className={styles["header-shopping-cart"]}
               >
                 <FaShoppingCart />
                 {totalCartQuantity > 0 && (
                   <Badge
                     pill
                     bg="success"
-                    className="ms-1"
-                    style={{
-                      position: "absolute",
-                      top: "30%",
-                      left: "0",
-                      transform: "translate(50%, -50%)", // Center the badge
-                    }}
+                    className={`ms-1 ${styles["header-shopping-cart-badge"]}`}
                   >
                     {totalCartQuantity}
                   </Badge>
@@ -121,6 +114,31 @@ export default Header;
       pill
       bg="success"
       className={`ms-1 ${styles["header-shopping-cart-badge"]}`}
+    >
+      {totalCartQuantity}
+    </Badge>
+  )}
+</Nav.Link>; */
+}
+
+{
+  /* <Nav.Link
+  onClick={cartClickHandler}
+  style={{ position: "relative" }}
+  className="me-2"
+>
+  <FaShoppingCart />
+  {totalCartQuantity > 0 && (
+    <Badge
+      pill
+      bg="success"
+      className="ms-1"
+      style={{
+        position: "absolute",
+        top: "30%",
+        left: "0",
+        transform: "translate(50%, -50%)", // Center the badge
+      }}
     >
       {totalCartQuantity}
     </Badge>

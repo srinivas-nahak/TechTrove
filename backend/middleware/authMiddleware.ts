@@ -4,9 +4,8 @@ import Users from "../models/userModel.js";
 
 //Protect Routes
 const protect = asyncHandler(async (req, res, next) => {
-  //Read the JWT from cookie
-  //We're passing a custom name "jwt" it can be anything
-  let token = req.cookies.jwt;
+  //Reading the JWT from cookie
+  const token = req.cookies.loginToken;
 
   if (token) {
     try {

@@ -1,6 +1,7 @@
 import express from "express";
 import productRoutes from "../routes/productRoutes.js";
 import userRoutes from "../routes/userRoutes.js";
+import orderRoutes from "../routes/orderRoutes.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import connectDB from "../config/db.js";
@@ -13,7 +14,12 @@ connectDB();
 const app = express();
 
 // Enable CORS for all routes
-app.use(cors());
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  })
+);
 
 dotenv.config();
 
@@ -29,6 +35,7 @@ app.use(cookieParser());
 //Redirecting pages
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/orders", orderRoutes);
 
 //Error Handlers
 app.use(notFound);

@@ -7,7 +7,7 @@ type CartItemType = {
   quantity: number;
 };
 
-export type CartType = {
+type CartType = {
   items: CartItemType[];
   totalQuantity: number;
   itemsPrice: number;
@@ -65,9 +65,18 @@ const cartSlice = createSlice({
       );
       return calculateTotalPrice(state);
     },
+    deleteCart() {
+      //Deleting cart from localStorage
+      localStorage.removeItem("cart");
+      return initialCart;
+    },
   },
 });
 
-export const cartAction = cartSlice.actions;
+const cartAction = cartSlice.actions;
+
+export { cartAction };
+
+export type { CartItemType, CartType };
 
 export default cartSlice.reducer;

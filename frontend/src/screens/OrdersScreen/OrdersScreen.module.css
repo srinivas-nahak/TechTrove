@@ -1,0 +1,120 @@
+:root {
+  --inactive-color: rgb(0, 0, 0, 0.3);
+  --semi-gray-color: rgb(0, 0, 0, 0.6);
+  --small-font-size: 0.8rem;
+}
+.orders-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  padding-bottom: 2rem;
+}
+
+.order-item-container {
+  width: 80%;
+  margin: 1rem auto;
+  padding: 1.5rem 2rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.order-item-container:hover {
+  background-color: #dddddd;
+}
+
+.order-item-container > ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-item-id {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-item-id span {
+  margin-left: 0.5rem;
+  color: var(--inactive-color);
+}
+
+.order-item-id span:hover {
+  color: var(--semi-gray-color);
+}
+
+.order-item-id > small {
+  font-size: var(--small-font-size);
+  color: var(--semi-gray-color);
+}
+
+.order-item-details-container {
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.order-item-details {
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+}
+
+.order-item-details > img {
+  width: 5rem;
+  border-radius: 1rem;
+  margin-right: 1rem;
+  border: solid 0.09rem #d1d1d1;
+}
+
+.order-item-details > small {
+  display: inline-block;
+  color: var(--semi-gray-color);
+}
+
+.order-item-details > small > span {
+  display: block;
+}
+
+.order-item-status {
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+
+.order-item-status-dot {
+  display: block;
+  height: 0.7rem;
+  width: 0.7rem;
+  margin-right: 0.7rem;
+  border-radius: 50%;
+  background-color: orange;
+}
+
+.order-item-price {
+  display: flex;
+}
+
+.order-item-price small {
+  font-size: var(--small-font-size);
+  color: var(--semi-gray-color);
+  display: block;
+}
+
+.order-item-price > span {
+  margin-left: 1rem;
+  color: var(--inactive-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+}
+
+.order-item-price > span:hover {
+  background-color: rgb(224, 97, 97);
+  border-radius: 50%;
+  color: #e7e7e7;
+}
