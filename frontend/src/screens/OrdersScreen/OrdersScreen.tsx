@@ -41,23 +41,26 @@ const OrdersScreen = () => {
   const {
     data: orders,
     isLoading: isOrderItemsLoading,
-    isSuccess: isOrderItemsSuccess,
-    isError,
-    error,
+    //isSuccess: isOrderItemsSuccess,
+    //isError,
+    //error,
   } = userInfo.isAdmin ? useGetOrdersAdminQuery() : useGetOrdersQuery();
 
   const [
     updateOrderAdmin,
     {
-      data: updatedOrder,
+      //data: updatedOrder,
       isLoading: isUpdateLoading,
-      isSuccess: isUpdateSuccess,
+      //isSuccess: isUpdateSuccess,
     },
   ] = useUpdateOrderAdminMutation();
 
   const [
     cancelOrder,
-    { isLoading: isCancelledOrderLoading, isSuccess: isCancelledOrderSuccess },
+    {
+      isLoading: isCancelledOrderLoading,
+      //isSuccess: isCancelledOrderSuccess
+    },
   ] = useCancelOrderMutation();
 
   if (isOrderItemsLoading) {

@@ -11,7 +11,6 @@ import styles from "./ProductBlock.module.css";
 import Rating from "../../../components/Rating/Rating";
 import { ProductType } from "../../../utils/customTypes";
 import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { cartAction } from "../../../store/cartSlice";
 import { RootState } from "../../../store";
@@ -19,7 +18,6 @@ import { cartScreenAction } from "../../../store/cartScreenSlice";
 
 const ProductBlock: React.FC<{ product: ProductType }> = ({ product }) => {
   const qtyRef = useRef<HTMLInputElement | null>(null);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const existingCartProduct = useSelector((state: RootState) =>
     state.cartReducer.items.find((item) => item.product._id === product._id)
