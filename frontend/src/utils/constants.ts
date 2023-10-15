@@ -1,5 +1,7 @@
 export const BASE_URL =
-  process.env.NODE_ENV === "development" ? "http://localhost:4000" : "";
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:4000"
+    : "http://tech-trove-six.vercel.app/";
 
 export const PRODUCTS_URL = "/api/products";
 export const USERS_URL = "/api/users";
