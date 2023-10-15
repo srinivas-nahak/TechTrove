@@ -5,7 +5,6 @@ import connectDB from "../config/db.js";
 import usersList from "../data/usersList.js";
 import productsData from "../data/products.js";
 import dotenv from "dotenv";
-import mongoose from "mongoose";
 
 dotenv.config();
 

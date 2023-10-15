@@ -1,21 +1,16 @@
 import { LinkContainer } from "react-router-bootstrap";
 import styles from "../AuthScreen.module.css";
 import { useSignUpMutation } from "../../../store/apiSlices/userApiSlice";
-import {
-  ChangeEventHandler,
-  FormEventHandler,
-  useEffect,
-  useState,
-} from "react";
+import { FormEventHandler, useEffect, useState } from "react";
 import { UserType } from "../../../utils/customTypes";
 import { authAction } from "../../../store/authSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Loader from "../../../components/Loader";
 import { errorMessageExtractor } from "../../../utils/errorHandler";
 import userFormValidator from "../../../hooks/userFormValidator";
 import CustomInputGroup from "../../../components/CustomInputGroup/CustomInputGroup";
 import CustomButton from "../../../components/UI/CustomButton/CustomButton";
+import { btnLoaderAction } from "../../../store/buttonLoaderSlice";
 
 const SignupScreen = () => {
   const dispatch = useDispatch();
@@ -73,9 +68,14 @@ const SignupScreen = () => {
 
     if (!("error" in response)) {
       dispatch(authAction.setCredentials(response.data));
+      dispatch(btnLoaderAction.addProperty({ showLoader: false }));
       navigate("/");
     }
   };
+
+  if (isLoading) {
+    dispatch(btnLoaderAction.addProperty({ showLoader: true }));
+  }
 
   return (
     <div className={styles["auth-page-container"]}>
@@ -122,9 +122,7 @@ const SignupScreen = () => {
           required
         />
         {errorMessage && errorMessage} {/*//If error message is not null */}
-        <CustomButton showLoader={isLoading} type="submit">
-          Sign Up Now
-        </CustomButton>
+        <CustomButton type="submit">Sign Up Now</CustomButton>
       </form>
       <p className={styles["login-signup-text"]}>
         Already have an account?{" "}

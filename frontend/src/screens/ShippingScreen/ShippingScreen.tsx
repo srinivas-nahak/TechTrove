@@ -12,7 +12,6 @@ import { OrderType } from "../../utils/customTypes.js";
 import { btnLoaderAction } from "../../store/buttonLoaderSlice.js";
 import CustomModalDialog from "../../components/CustomModalDialog/CustomModalDialog.js";
 import { cartAction } from "../../store/cartSlice.js";
-import { ORDERS_URL } from "../../utils/constants.js";
 
 const ShippingScreen = () => {
   const navigate = useNavigate();

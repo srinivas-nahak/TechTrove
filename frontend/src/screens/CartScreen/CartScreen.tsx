@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./CartScreen.module.css";
 import { RootState } from "../../store";
 import { FaTimes } from "react-icons/fa";
-import { Row, Col, Button } from "react-bootstrap";
 import { cartScreenAction } from "../../store/cartScreenSlice";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";

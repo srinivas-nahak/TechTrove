@@ -1,9 +1,4 @@
-import {
-  ChangeEventHandler,
-  FormEventHandler,
-  useEffect,
-  useState,
-} from "react";
+import { FormEventHandler, useEffect } from "react";
 import { useLoginMutation } from "../../../store/apiSlices/userApiSlice.js";
 import styles from "../AuthScreen.module.css";
 import { LinkContainer } from "react-router-bootstrap";

@@ -1,6 +1,5 @@
 import { Container } from "react-bootstrap";
 import { Outlet } from "react-router-dom";
-import styles from "./App.module.css";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer";
 import CartScreen from "./screens/CartScreen/CartScreen";
@@ -21,7 +20,7 @@ function App() {
           <Outlet />
         </Container>
       </main>
-      <Footer className={styles.Footer} />
+      <Footer />
     </>
   );
 }
