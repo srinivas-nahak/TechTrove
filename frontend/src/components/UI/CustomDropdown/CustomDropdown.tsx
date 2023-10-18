@@ -34,11 +34,6 @@ const CustomDropdown: React.FC<CustomDropDownType<HTMLElement>> = ({
 
     dialogPosition.left = elementRect!.left - tempRight;
 
-    //For extreme smaller & extreme larger screens
-    if (dialogPosition.left <= 0 || window.innerWidth > 900) {
-      dialogPosition.left = elementRect!.left;
-    }
-
     setDialogPosition((_) => ({ ...defaultDialogPosition }));
   };
 

@@ -2,15 +2,54 @@
   position: sticky;
   top: -1px;
   width: 100%;
+  padding: 0.7rem 2rem;
+  background-color: #212529;
   box-sizing: border-box;
   z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.header-logo-section {
+  display: flex;
+  align-items: center;
+}
+
+.header-logo-section img {
+  width: 2rem;
+}
+.header-logo-section h3 {
+  font-size: 1.5rem;
+  font-weight: normal;
+}
+
+.Header > nav {
+  display: flex;
+  align-items: center;
 }
 
 .header-shopping-cart {
   position: relative;
+  margin-right: 2rem;
 }
 
 .header-shopping-cart-badge {
-  position: "absolute";
-  transform: translate(-50%, -50%);
+  width: 1.2rem;
+  height: 1.2rem;
+  position: absolute;
+  transform: translate(50%, -130%);
+  background-color: #36ba3c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
+  border-radius: 50%;
+  color: white;
+}
+
+.header-user {
+  display: flex;
+  align-items: center;
 }

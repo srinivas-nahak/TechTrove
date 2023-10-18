@@ -1,6 +1,4 @@
-import { Navbar, Nav, Container, Badge } from "react-bootstrap";
 import { FaShoppingCart, FaUser } from "react-icons/fa"; //Font awesome libs
-import { LinkContainer } from "react-router-bootstrap";
 import logo from "../../assets/tech-trove-logo.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
@@ -18,7 +16,7 @@ const Header = () => {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
-  const loginIconRef = useRef<HTMLAnchorElement | null>(null);
+  const loginIconRef = useRef<HTMLDivElement | null>(null);
   const [showLoginDialog, setShowLoginDialog] = useState(false);
 
   const cartClickHandler = () => {
@@ -43,47 +41,32 @@ const Header = () => {
           closeDialog={() => setShowLoginDialog(false)}
         />
       )}
-      <Navbar bg="dark" variant="dark" expand="md" collapseOnSelect>
-        <Container>
-          <LinkContainer to="/">
-            <Navbar.Brand>
-              <img src={logo} width="9%" style={{ marginRight: "0.5rem" }} />
-              TechTrove
-            </Navbar.Brand>
-          </LinkContainer>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <div className={styles["header-logo-section"]}>
+        <img src={logo} width="9%" style={{ marginRight: "0.5rem" }} />
+        <h3>TechTrove</h3>
+      </div>
 
-          <Navbar.Collapse
-            id="basic-navbar-nav"
-            className="justify-content-end"
-          >
-            <Nav className="ms-auto">
-              {(!userInfo || !userInfo.isAdmin) && (
-                <Nav.Link
-                  onClick={cartClickHandler}
-                  className={styles["header-shopping-cart"]}
-                >
-                  <FaShoppingCart />
-                  {totalCartQuantity > 0 && (
-                    <Badge
-                      pill
-                      bg="success"
-                      className={`ms-1 ${styles["header-shopping-cart-badge"]}`}
-                    >
-                      {totalCartQuantity}
-                    </Badge>
-                  )}
-                </Nav.Link>
-              )}
-
-              <Nav.Link onClick={userClickHandler} ref={loginIconRef}>
-                <FaUser />
-                {userInfo && userInfo.name}
-              </Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+      <nav>
+        <div
+          onClick={cartClickHandler}
+          className={styles["header-shopping-cart"]}
+        >
+          <FaShoppingCart />
+          {totalCartQuantity > 0 && (
+            <div className={styles["header-shopping-cart-badge"]}>
+              {totalCartQuantity}
+            </div>
+          )}
+        </div>
+        <div
+          onClick={userClickHandler}
+          ref={loginIconRef}
+          className={styles["header-user"]}
+        >
+          <FaUser />
+          {userInfo && userInfo.name}
+        </div>
+      </nav>
     </header>
   );
 };
@@ -146,4 +129,46 @@ export default Header;
     </Badge>
   )}
 </Nav.Link>; */
+}
+
+//The working code
+{
+  /* <Navbar bg="dark" variant="dark" expand="md">
+  <Container>
+    <LinkContainer to="/">
+      <Navbar.Brand>
+        <img src={logo} width="9%" style={{ marginRight: "0.5rem" }} />
+        TechTrove
+      </Navbar.Brand>
+    </LinkContainer>
+    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
+    <Navbar.Collapse id="basic-navbar-nav">
+      <Nav className="ms-auto">
+        {(!userInfo || !userInfo.isAdmin) && (
+          <Nav.Link
+            onClick={cartClickHandler}
+            className={styles["header-shopping-cart"]}
+          >
+            <FaShoppingCart />
+            {totalCartQuantity > 0 && (
+              <Badge
+                pill
+                bg="success"
+                className={`ms-1 ${styles["header-shopping-cart-badge"]}`}
+              >
+                {totalCartQuantity}
+              </Badge>
+            )}
+          </Nav.Link>
+        )}
+
+        <Nav.Link onClick={userClickHandler} ref={loginIconRef}>
+          <FaUser />
+          {userInfo && userInfo.name}
+        </Nav.Link>
+      </Nav>
+    </Navbar.Collapse>
+  </Container>
+</Navbar>; */
 }

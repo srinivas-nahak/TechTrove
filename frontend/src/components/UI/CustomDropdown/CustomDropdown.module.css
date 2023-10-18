@@ -9,6 +9,7 @@
   border-radius: 1.2rem;
   padding: 0.8rem 1rem;
   z-index: 10;
+  color: #212529;
 }
 
 .custom-dropdown p {
@@ -19,7 +20,7 @@
 }
 
 .custom-dropdown p:hover {
-  color: green;
+  color: #36ba3c;
   font-weight: 500;
   transition: color text-decoration 0.3s;
 }
