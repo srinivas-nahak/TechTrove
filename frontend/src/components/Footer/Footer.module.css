@@ -1,0 +1,43 @@
+@import "../../index.css";
+
+.Footer {
+  height: 3.5rem;
+  background-color: var(--primary-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.footer-content {
+  width: 80%;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  color: white;
+}
+
+.footer-content *:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 550px) {
+  .Footer {
+    height: 6rem;
+    text-align: center;
+    padding: 0;
+  }
+
+  .footer-content {
+    width: 100%;
+    font-size: 0.8rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}

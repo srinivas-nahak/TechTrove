@@ -1,19 +1,24 @@
+import { useState } from "react";
 import styles from "./ProductShowcase.module.css";
 
 const ProductShowcase = () => {
   return (
     <div className={styles["product-showcase-container"]}>
       <div className={styles["product-1"]}>
-        <img src="../../../public/images/phone.jpg" />
+        <h3>Smart Phones</h3>
+        <img src="./images/banners/phone_banner.jpg" />
       </div>
       <div className={styles["product-2"]}>
-        <img src="../../../public/images/playstation.jpg" />
+        <h3>Game Consoles</h3>
+        <img src="./images/banners/game_controller_banner.jpg" />
       </div>
       <div className={styles["product-3"]}>
-        <img src="../../../public/images/airpods.jpg" />
+        <h3>Earphones</h3>
+        <img src="./images/banners/airpods_banner.jpg" />
       </div>
       <div className={styles["product-4"]}>
-        <img src="../../../public/images/camera.jpg" />
+        <h3>Cameras</h3>
+        <img src="./images/banners/camera_banner.jpg" />
       </div>
     </div>
   );

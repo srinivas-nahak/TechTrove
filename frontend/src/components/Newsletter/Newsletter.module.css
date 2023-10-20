@@ -1,0 +1,44 @@
+@import "../../index.css";
+
+.newsletter-container {
+  text-align: center;
+  background-color: var(--primary-gray);
+  height: 15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.newsletter-container h2 {
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.newsletter-container form {
+  width: 30%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+}
+
+.newsletter-container form input {
+  margin: 0;
+  padding: 0.8rem;
+  width: 20rem;
+}
+
+.newsletter-container form button {
+  margin: 0;
+  margin-left: 0.5rem;
+  padding: 0.8rem;
+}
+
+@media screen and (max-width: 768px) {
+  .newsletter-container form {
+    width: auto;
+  }
+  .newsletter-container form input {
+    width: 15rem;
+  }
+}

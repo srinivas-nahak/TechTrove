@@ -1,9 +1,13 @@
-import { FaShoppingCart, FaUser } from "react-icons/fa"; //Font awesome libs
+/// <reference types="vite-plugin-svgr/client" />
+
 import logo from "../../assets/tech-trove-logo.svg";
+import ShoppingBagIcon from "../../assets/shopping_bag.svg?react";
+import PersonIcon from "../../assets/person.svg?react";
+import SearchIcon from "../../assets/search.svg?react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { cartScreenAction } from "../../store/cartScreenSlice";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./Header.module.css";
 import { useRef, useState } from "react";
 import CustomDropdown from "../UI/CustomDropdown/CustomDropdown";
@@ -41,17 +45,22 @@ const Header = () => {
           closeDialog={() => setShowLoginDialog(false)}
         />
       )}
-      <div className={styles["header-logo-section"]}>
-        <img src={logo} width="9%" style={{ marginRight: "0.5rem" }} />
+      <Link className={styles["header-logo-section"]} to="/">
+        <img
+          src={logo}
+          width="9%"
+          style={{ marginRight: "0.5rem" }}
+          alt="Logo"
+        />
         <h3>TechTrove</h3>
-      </div>
+      </Link>
 
       <nav>
         <div
           onClick={cartClickHandler}
           className={styles["header-shopping-cart"]}
         >
-          <FaShoppingCart />
+          <ShoppingBagIcon />
           {totalCartQuantity > 0 && (
             <div className={styles["header-shopping-cart-badge"]}>
               {totalCartQuantity}
@@ -63,7 +72,7 @@ const Header = () => {
           ref={loginIconRef}
           className={styles["header-user"]}
         >
-          <FaUser />
+          <PersonIcon />
           {userInfo && userInfo.name}
         </div>
       </nav>

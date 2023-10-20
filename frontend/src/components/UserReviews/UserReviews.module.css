@@ -1,0 +1,52 @@
+.user-reviews-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.user-reviews-container h1 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+.user-reviews {
+  width: calc(25rem * 7);
+  display: flex;
+  user-select: none;
+  animation: auto-scroll 35s linear infinite;
+}
+.user-reviews:hover {
+  animation-play-state: paused;
+}
+
+.user-review-item {
+  height: 100%;
+  padding: 1rem 0.8rem;
+}
+
+.user-review-item div {
+  transition: all 1s ease-in-out;
+}
+
+.user-review-item div:hover {
+  transform: scale(1.05);
+}
+
+@keyframes auto-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-25rem * 3.5));
+  }
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.user-reviews::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.user-reviews {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

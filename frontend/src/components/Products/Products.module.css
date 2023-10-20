@@ -1,0 +1,16 @@
+.products-container h1 {
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+}
+.product-items {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 1.5rem;
+  grid-row: repeat(auto-fill, 1fr);
+}
+
+.product-items div {
+  box-sizing: border-box;
+  position: relative;
+}

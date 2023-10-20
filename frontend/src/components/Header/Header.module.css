@@ -1,25 +1,37 @@
+@import "../../index.css";
+
 .Header {
   position: sticky;
   top: -1px;
   width: 100%;
-  padding: 0.7rem 2rem;
-  background-color: #212529;
+  padding: 0.5rem 2rem;
+  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0px 0px 5px rgb(0, 0, 0, 0.17);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
   box-sizing: border-box;
   z-index: 5;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: white;
+  color: var(--primary-dark);
 }
 
 .header-logo-section {
   display: flex;
   align-items: center;
+  text-decoration: none;
+  color: var(--primary-dark);
+}
+
+.header-logo-section:hover {
+  color: var(--primary-dark);
 }
 
 .header-logo-section img {
   width: 2rem;
 }
+
 .header-logo-section h3 {
   font-size: 1.5rem;
   font-weight: normal;
@@ -27,7 +39,26 @@
 
 .Header > nav {
   display: flex;
-  align-items: center;
+}
+
+.Header > nav svg {
+  width: 1.3rem;
+  shape-rendering: optimizeQuality;
+  cursor: pointer;
+}
+
+.Header > nav svg:hover path {
+  fill: var(--primary-positive);
+}
+
+.Header > nav svg path {
+  stroke: var(--primary-dark);
+  stroke-width: 5;
+}
+
+.Header > nav img {
+  width: 1.3rem;
+  position: relative;
 }
 
 .header-shopping-cart {
@@ -39,7 +70,7 @@
   width: 1.2rem;
   height: 1.2rem;
   position: absolute;
-  transform: translate(50%, -130%);
+  transform: translate(60%, -160%);
   background-color: #36ba3c;
   display: flex;
   justify-content: center;

@@ -14,9 +14,18 @@ type ProductType = {
 type UserType = {
   _id?: string;
   name?: string;
+  displayPicture?: string;
   email?: string;
   password?: string;
   isAdmin?: boolean;
+};
+
+type ReviewType = {
+  userId: string;
+  userDisplayPicture: string;
+  name: string;
+  rating: number;
+  comment: string;
 };
 
 type OrderType = {
@@ -55,4 +64,10 @@ type ShippingAddressType = {
   country: string;
 };
 
-export type { ProductType, UserType, OrderType, ShippingAddressType };
+export type {
+  ProductType,
+  UserType,
+  OrderType,
+  ReviewType,
+  ShippingAddressType,
+};

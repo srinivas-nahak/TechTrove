@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 
 interface UserDoc extends Document {
   name: string;
+  displayPicture: string;
   email: string;
   password: string;
   isAdmin: boolean;
@@ -12,6 +13,7 @@ interface UserDoc extends Document {
 const userSchema = new mongoose.Schema<UserDoc>(
   {
     name: { type: String, required: true },
+    displayPicture: String,
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true, minlength: 8 },
     isAdmin: { type: Boolean, required: true, default: false },
