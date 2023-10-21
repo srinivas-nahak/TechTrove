@@ -14,7 +14,7 @@
 
 /*Setting hover to other elements when main container is hovered*/
 #product-item-container:hover {
-  box-shadow: 0 0 0px 1.3px #d4d4d4;
+  box-shadow: 0 0 0px 1.5px #d4d4d4;
 }
 
 #product-item-container:hover img {

@@ -1,0 +1,26 @@
+@import "../../index.css";
+
+.back-button {
+  height: 2.5rem;
+  width: 2.5rem;
+  padding: 0;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border-radius: 999px;
+  text-align: center;
+}
+.back-button:hover {
+  background-color: rgb(255, 215, 215);
+}
+
+.back-button svg {
+  height: 1.2rem;
+}
+
+.back-button > svg polygon {
+  stroke: var(--primary-dark);
+  stroke-width: 20;
+}

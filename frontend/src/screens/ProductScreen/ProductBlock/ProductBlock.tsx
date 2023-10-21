@@ -1,22 +1,16 @@
-import {
-  Row,
-  Col,
-  Image,
-  ListGroup,
-  Card,
-  Button,
-  Form,
-} from "react-bootstrap";
+import { Row, Col, Image, ListGroup, Card, Form } from "react-bootstrap";
 import styles from "./ProductBlock.module.css";
 import Rating from "../../../components/Rating/Rating";
 import { ProductType } from "../../../utils/customTypes";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { cartAction } from "../../../store/cartSlice";
 import { RootState } from "../../../store";
 import { cartScreenAction } from "../../../store/cartScreenSlice";
+import CustomButton from "../../../components/UI/CustomButton/CustomButton";
 
 const ProductBlock: React.FC<{ product: ProductType }> = ({ product }) => {
+  const [priceCounter, setPriceCounter] = useState(product.price);
   const qtyRef = useRef<HTMLInputElement | null>(null);
   const dispatch = useDispatch();
   const existingCartProduct = useSelector((state: RootState) =>
@@ -24,6 +18,13 @@ const ProductBlock: React.FC<{ product: ProductType }> = ({ product }) => {
   );
 
   const alreadyAddedQuantity = existingCartProduct?.quantity ?? 0;
+
+  const qtyChangeHandler = () => {
+    if (qtyRef.current) {
+      if (qtyRef.current.value === "0") return;
+      setPriceCounter(product.price * parseInt(qtyRef.current.value));
+    }
+  };
 
   const addToCartHandler = () => {
     const qty = parseInt(qtyRef.current?.value ?? "") ?? 0;
@@ -68,7 +69,7 @@ const ProductBlock: React.FC<{ product: ProductType }> = ({ product }) => {
             />
           </ListGroup.Item>
           <ListGroup.Item>
-            <strong>Price:${product.price}</strong>
+            <strong>${product.price}</strong>
           </ListGroup.Item>
           <ListGroup.Item>
             <p>{product.description}</p>
@@ -82,7 +83,7 @@ const ProductBlock: React.FC<{ product: ProductType }> = ({ product }) => {
               <ListGroup.Item className="py-3">
                 <Row>
                   <Col>Price</Col>
-                  <Col>${product.price}</Col>
+                  <Col>${priceCounter}</Col>
                 </Row>
               </ListGroup.Item>
 
@@ -106,6 +107,7 @@ const ProductBlock: React.FC<{ product: ProductType }> = ({ product }) => {
                         type="number"
                         min={0}
                         max={product.countInStock}
+                        onChange={qtyChangeHandler}
                       />
                     </Col>
                   </Row>
@@ -113,14 +115,17 @@ const ProductBlock: React.FC<{ product: ProductType }> = ({ product }) => {
               )}
 
               <ListGroup.Item className="py-4">
-                <Button
-                  variant="success"
-                  className="btn-block"
+                <CustomButton
                   disabled={product.countInStock === 0}
                   onClick={addToCartHandler}
+                  style={
+                    product.countInStock === 0
+                      ? { backgroundColor: "#2fa535" }
+                      : {}
+                  }
                 >
                   Add To Cart
-                </Button>
+                </CustomButton>
               </ListGroup.Item>
             </ListGroup>
           </Card.Body>

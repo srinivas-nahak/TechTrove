@@ -56,11 +56,6 @@
   stroke-width: 5;
 }
 
-.Header > nav img {
-  width: 1.3rem;
-  position: relative;
-}
-
 .header-shopping-cart {
   position: relative;
   margin-right: 2rem;

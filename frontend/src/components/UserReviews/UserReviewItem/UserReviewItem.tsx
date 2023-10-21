@@ -1,4 +1,5 @@
 import { ReviewType } from "../../../utils/customTypes";
+import Rating from "../../Rating/Rating";
 import Card from "../../UI/Card/Card";
 import styles from "./UserReviewItem.module.css";
 
@@ -12,7 +13,9 @@ const UserReviewItem: React.FC<
       <div className={styles["user-review-info"]}>
         <img src={review.userDisplayPicture} alt={review.name} />
         <p className={styles["user-review-info__username"]}>{review.name}</p>
+        <Rating rating={review.rating} />
       </div>
+
       <p>{review.comment}</p>
     </Card>
   );

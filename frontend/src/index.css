@@ -20,6 +20,7 @@
   --primary-positive: #36ba3c;
 }
 
+/*Hiding the white line while zooming the image*/
 * {
   scroll-behavior: smooth;
 
@@ -27,6 +28,7 @@
   backface-visibility: hidden !important;
 }
 
+/*Setting the text selection color*/
 *::-moz-selection {
   /* Code for Firefox */
   color: white;

@@ -1,9 +1,6 @@
-import { useEffect, useState } from "react";
 import { ReviewType } from "../../utils/customTypes";
 import UserReviewItem from "./UserReviewItem/UserReviewItem";
 import styles from "./UserReviews.module.css";
-import { motion } from "framer-motion";
-import { SwipeableHandlers, useSwipeable } from "react-swipeable";
 
 const UserReviews = () => {
   const reviews: ReviewType[] = [
@@ -21,7 +18,7 @@ const UserReviews = () => {
       rating: 4.0,
       name: "Jacob Williams",
       comment:
-        "Good selection of tech products. Prices are competitive. The only downside is the slightly.",
+        "Good selection of tech products. Prices are competitive. The only downside is the slightly. Great experience overall!",
     },
     {
       userId: "r3",
@@ -29,7 +26,7 @@ const UserReviews = () => {
       rating: 3.5,
       name: "Olivia Mitchell",
       comment:
-        "Decent store. Product quality is okay, but customer service could be more responsive.",
+        "Decent store. Product quality is okay, but customer service could be more responsive. But looking forward to explore.",
     },
     {
       userId: "r4",
@@ -42,10 +39,10 @@ const UserReviews = () => {
     {
       userId: "r5",
       userDisplayPicture: "./images/user_imgs/benjamin_taylor.jpg",
-      rating: 5.0,
+      rating: 3.0,
       name: "Benjamin Taylor",
       comment:
-        "Not satisfied with my purchase. The item was damaged on arrival, and it took a long time.",
+        "Not satisfied with my purchase. The item was damaged on arrival, and it took a long time. Could be better service!",
     },
     {
       userId: "r6",
@@ -62,7 +59,7 @@ const UserReviews = () => {
       rating: 4.0,
       name: "Ava Davis",
       comment:
-        "A reliable tech store. Competitive prices, but delivery can be slow at times. Overall, a good place.",
+        "A reliable tech store. Competitive prices, but delivery can be slow at times. Overall, a good place to buy tech from.",
     },
   ];
 

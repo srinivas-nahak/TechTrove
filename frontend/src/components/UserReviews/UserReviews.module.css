@@ -1,6 +1,7 @@
 .user-reviews-container {
   position: relative;
   overflow: hidden;
+  margin-bottom: 3.5rem;
 }
 
 .user-reviews-container h1 {
@@ -24,7 +25,7 @@
 }
 
 .user-review-item div {
-  transition: all 1s ease-in-out;
+  transition: all 0.8s ease-in-out;
 }
 
 .user-review-item div:hover {

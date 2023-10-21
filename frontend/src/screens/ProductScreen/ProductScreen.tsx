@@ -1,11 +1,15 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useGetProductQuery } from "../../store/apiSlices/productApiSlice";
 import { errorHandler } from "../../utils/errorHandler";
 import ProductBlock from "./ProductBlock/ProductBlock";
 import Loader from "../../components/Loader";
+import CustomButton from "../../components/UI/CustomButton/CustomButton";
+import styles from "./ProductScreen.module.css";
+import BackIcon from "../../assets/back.svg?react";
 
 const ProductScreen = () => {
+  const navigate = useNavigate();
   const { id: productId } = useParams();
 
   const {
@@ -23,11 +27,18 @@ const ProductScreen = () => {
     return errorHandler(error);
   }
 
+  const backClickHandler = () => {
+    navigate("..");
+  };
+
   return (
     <>
-      <Link className="btn btn-dark my-3" to="..">
-        Back
-      </Link>
+      <CustomButton
+        onClick={backClickHandler}
+        className={styles["back-button"]}
+      >
+        <BackIcon />
+      </CustomButton>
 
       {isSuccess && <ProductBlock product={product} />}
     </>

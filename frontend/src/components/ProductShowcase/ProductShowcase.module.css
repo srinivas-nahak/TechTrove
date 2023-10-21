@@ -9,9 +9,11 @@
     "product-1 product-2 product-3"
     "product-1 product-2 product-4";
   text-align: center;
+  margin-bottom: 3.5rem;
 }
 
 .product-showcase-container div {
+  cursor: pointer;
   position: relative;
   box-sizing: border-box;
   border-radius: 1.5rem;

@@ -2,7 +2,7 @@ import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import styles from "./Rating.module.css";
 import { Fragment } from "react";
 
-const Rating: React.FC<{ rating: number; numReviews: number }> = ({
+const Rating: React.FC<{ rating: number; numReviews?: number }> = ({
   rating,
   numReviews,
 }) => {
@@ -20,11 +20,14 @@ const Rating: React.FC<{ rating: number; numReviews: number }> = ({
     <Fragment key={index}>{getStar(rating, index)}</Fragment>
   ));
 
-  const reviewText = `${numReviews} ${numReviews > 1 ? "reviews" : "review"}`;
+  const reviewText = numReviews
+    ? `${numReviews} ${numReviews > 1 ? "reviews" : "review"}`
+    : "";
 
   return (
     <div className={styles.Rating}>
-      {stars} <span style={{ fontSize: "0.85rem" }}>{reviewText}</span>
+      {stars}{" "}
+      {numReviews && <span style={{ fontSize: "0.85rem" }}>{reviewText}</span>}
     </div>
   );
 };
