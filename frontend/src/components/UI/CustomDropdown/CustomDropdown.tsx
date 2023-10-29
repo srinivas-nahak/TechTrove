@@ -25,10 +25,10 @@ const CustomDropdown: React.FC<CustomDropDownType<HTMLElement>> = ({
 
   const [dialogPosition, setDialogPosition] = useState(defaultDialogPosition);
 
-  const elementRect = elementRef.current?.getBoundingClientRect();
+  let elementRect = elementRef.current?.getBoundingClientRect();
 
   const adjustDialogPosition = () => {
-    dialogPosition.top = elementRect!.top + window.scrollY;
+    dialogPosition.top = elementRect!.top;
 
     const tempRight = window.innerWidth - elementRect!.right;
 
@@ -86,7 +86,7 @@ const CustomDropdown: React.FC<CustomDropDownType<HTMLElement>> = ({
       }}
       ref={customDropDownRef}
     >
-      <p>Profile</p>
+      {/* <p>Profile</p> */}
       <p onClick={openOrdersHandler}>My Orders</p>
       <p onClick={logoutHandler}>Logout</p>
     </div>

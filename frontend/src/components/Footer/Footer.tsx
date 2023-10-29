@@ -2,7 +2,7 @@ import styles from "./Footer.module.css";
 
 const Footer = () => {
   return (
-    <footer className={styles.Footer}>
+    <div className={styles["footer-container"]}>
       <ul className={styles["footer-content"]}>
         <li>About Us</li>
         <li>Store Locator</li>
@@ -11,7 +11,7 @@ const Footer = () => {
         <li>News</li>
         <li>Careers</li>
       </ul>
-    </footer>
+    </div>
   );
 };
 

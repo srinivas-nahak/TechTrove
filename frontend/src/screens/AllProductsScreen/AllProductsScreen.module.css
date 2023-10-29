@@ -1,0 +1,54 @@
+@import "../../index.css";
+
+.products-container {
+  margin-bottom: 3.5rem;
+}
+
+.products-container h1 {
+  margin-bottom: 1.5rem;
+}
+
+.product-categories-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.product-categories {
+  flex: 1;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+.product-categories li {
+  margin: 0 0.5rem;
+}
+
+.product-categories li button {
+  background-color: transparent;
+  color: var(--primary-dark);
+  border: 2px solid var(--secondary-gray);
+}
+
+.product-categories li button:hover {
+  background-color: transparent;
+  border: 2px solid var(--primary-dark);
+  transition: all 0.3s ease-in-out;
+}
+
+.product-categories li .active-button {
+  font-weight: 500;
+  border: 2px solid var(--primary-dark);
+}
+
+.product-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 1.5rem;
+  grid-row: repeat(auto-fill, 1fr);
+}
+
+.product-items div {
+  box-sizing: border-box;
+  position: relative;
+}

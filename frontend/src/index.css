@@ -1,5 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
 :root {
-  perspective: 1px;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -17,12 +17,16 @@
   --border-radius: 1.5rem;
   --primary-dark: #17181d;
   --primary-gray: #404448;
+  --secondary-gray: #c6c6c6;
+  --light-gray: #d4d4d4;
   --primary-positive: #36ba3c;
 }
 
 /*Hiding the white line while zooming the image*/
 * {
+  color: var(--primary-dark);
   scroll-behavior: smooth;
+  font-family: "Montserrat", sans-serif;
 
   -webkit-backface-visibility: hidden !important;
   backface-visibility: hidden !important;
@@ -44,10 +48,21 @@ body {
   min-height: 100vh;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5 p,
+strong,
+small {
+  color: var(--primary-dark);
+}
+
 h1 {
-  font-size: 1.7rem !important;
-  color: var(--primary-dark) !important;
-  font-weight: 400 !important;
+  font-size: 1.7rem;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
 }
 
 a {

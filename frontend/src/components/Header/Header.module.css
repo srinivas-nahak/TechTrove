@@ -4,8 +4,8 @@
   position: sticky;
   top: -1px;
   width: 100%;
-  padding: 0.5rem 2rem;
-  background-color: rgba(255, 255, 255, 0.7);
+  padding: 1rem 2rem;
+  background-color: rgba(255, 255, 255, 0.8);
   box-shadow: 0px 0px 5px rgb(0, 0, 0, 0.17);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
@@ -32,9 +32,16 @@
   width: 2rem;
 }
 
-.header-logo-section h3 {
+/* .header-logo-section h3 {
   font-size: 1.5rem;
   font-weight: normal;
+} */
+
+.header-logo-section h1 {
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5rem;
+  font-size: 1.1rem;
 }
 
 .Header > nav {
@@ -78,4 +85,10 @@
 .header-user {
   display: flex;
   align-items: center;
+  cursor: pointer;
+  text-overflow: ellipsis;
+}
+
+.header-user svg {
+  margin-right: 0.2rem;
 }

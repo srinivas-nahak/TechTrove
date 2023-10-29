@@ -1,8 +1,9 @@
-@import "../../index.css";
+@import "../../../index.css";
 
 .back-button {
   height: 2.5rem;
   width: 2.5rem;
+  min-width: 2.5rem;
   padding: 0;
   margin-bottom: 1rem;
   display: flex;

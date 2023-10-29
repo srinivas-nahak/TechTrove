@@ -28,11 +28,11 @@
   transition: color text-decoration 0.3s;
 }
 
-.custom-dropdown p:nth-child(2):hover {
+/* .custom-dropdown p:nth-child(2):hover {
   color: blue;
-}
+} */
 
-.custom-dropdown p:nth-child(3):hover {
+.custom-dropdown p:nth-child(2):hover {
   color: red;
 }
 /* .custom-dropdown p {

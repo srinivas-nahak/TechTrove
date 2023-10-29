@@ -95,4 +95,11 @@
     grid-template-rows: repeat(2, 1fr);
     grid-template-areas: "product-1 product-2" "product-3 product-4";
   }
+
+  .product-showcase-container h3 {
+    font-size: 1.5rem;
+    bottom: 7%;
+    left: 7%;
+    padding-right: 1.2rem;
+  }
 }

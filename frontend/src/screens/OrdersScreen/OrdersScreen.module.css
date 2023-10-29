@@ -3,6 +3,11 @@
   --semi-gray-color: rgb(0, 0, 0, 0.6);
   --small-font-size: 0.8rem;
 }
+
+.orders-screen-container {
+  display: flex;
+}
+
 .orders-container {
   position: relative;
   width: 100%;
@@ -12,7 +17,8 @@
 
 .order-item-container {
   width: 80%;
-  margin: 1rem auto;
+  margin: 0 auto;
+  margin-bottom: 1rem;
   padding: 1.5rem 2rem;
   cursor: pointer;
   user-select: none;

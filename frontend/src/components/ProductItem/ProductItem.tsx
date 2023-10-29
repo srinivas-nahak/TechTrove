@@ -1,7 +1,7 @@
-import { ProductType } from "../../../utils/customTypes";
+import { ProductType } from "../../utils/customTypes";
 import styles from "./ProductItem.module.css";
 import { Link } from "react-router-dom";
-import Card from "../../UI/Card/Card";
+import Card from "../UI/Card/Card";
 
 const ProductItem: React.FC<{ product: ProductType }> = ({ product }) => {
   return (

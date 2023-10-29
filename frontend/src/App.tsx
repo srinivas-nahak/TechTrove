@@ -13,15 +13,17 @@ function App() {
   );
 
   return (
-    <>
+    <div className={styles.App}>
       <Header />
       {showCartScreen && <CartScreen />}
       <main className={styles.Main}>
         <Outlet />
       </main>
-      <Newsletter />
-      <Footer />
-    </>
+      <footer className={styles.Footer}>
+        <Newsletter />
+        <Footer />
+      </footer>
+    </div>
   );
 }
 

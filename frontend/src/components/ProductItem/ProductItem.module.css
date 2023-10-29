@@ -1,20 +1,16 @@
-@import "../../../index.css";
-
-#product-item-container * {
-  color: #3e3e3e;
-}
+@import "../../index.css";
 
 #product-item-container {
   border-radius: var(--border-radius);
   background-color: transparent !important;
-  border: 1px solid #d4d4d4;
+  border: 1px solid var(--light-gray);
   padding-bottom: 0.5rem;
   transition: all 0.4s ease-in-out;
 }
 
 /*Setting hover to other elements when main container is hovered*/
 #product-item-container:hover {
-  box-shadow: 0 0 0px 1.5px #d4d4d4;
+  box-shadow: 0 0 0px 1.5px var(--light-gray);
 }
 
 #product-item-container:hover img {
@@ -57,7 +53,7 @@
 }
 
 #product-item-container h3 {
-  font-weight: 600;
+  font-weight: 500;
   margin: 1rem 0;
 }
 

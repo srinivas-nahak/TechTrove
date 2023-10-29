@@ -1,17 +1,4 @@
-// export type ProductType = {
-//   _id: number;
-//   name: string;
-//   image: string;
-//   description: string;
-//   brand: string;
-//   category: string;
-//   price: number;
-//   countInStock: number;
-//   rating: number;
-//   numReviews: number;
-// };
-
-const productsData = [
+const dummyProductsData = [
   {
     name: "Airpods Wireless Bluetooth Headphones",
     image: "/images/airpods.jpg",
@@ -86,4 +73,4 @@ const productsData = [
   },
 ];
 
-export default productsData;
+export default dummyProductsData;

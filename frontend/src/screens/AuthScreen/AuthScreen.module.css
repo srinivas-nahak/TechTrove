@@ -23,6 +23,10 @@
   font-size: 0.6rem;
 }
 
+.auth-page__button {
+  margin-top: 1rem;
+}
+
 @media screen and (max-width: 930px) {
   .auth-page-container {
     text-align: center;

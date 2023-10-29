@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { ProductType } from "../utils/customTypes";
 import { calculateTotalPrice } from "../utils/cartUtils";
+import dummyProductsData from "../utils/dummyProducts";
 
 type CartItemType = {
   product: ProductType;

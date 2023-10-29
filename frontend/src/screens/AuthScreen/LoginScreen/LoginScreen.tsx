@@ -1,8 +1,7 @@
 import { FormEventHandler, useEffect } from "react";
 import { useLoginMutation } from "../../../store/apiSlices/userApiSlice.js";
 import styles from "../AuthScreen.module.css";
-import { LinkContainer } from "react-router-bootstrap";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { authAction } from "../../../store/authSlice.js";
 import { RootState } from "../../../store/index.js";
@@ -23,11 +22,11 @@ const LoginScreen = () => {
 
   //Using custom hooks for Input Field states
   const { enteredValue: inputEmail, valueInputHandler: emailInputHandler } =
-    userFormValidator();
+    userFormValidator("lorem@email.com");
   const {
     enteredValue: inputPassword,
     valueInputHandler: passwordInputHandler,
-  } = userFormValidator();
+  } = userFormValidator("123456");
 
   const errorText = (
     <p className="text-danger text-start">Invalid email or password!</p>
@@ -91,18 +90,20 @@ const LoginScreen = () => {
 
         {isError && errorText}
 
-        <CustomButton type="submit">Login Now</CustomButton>
+        <CustomButton type="submit" className={styles["auth-page__button"]}>
+          Login Now
+        </CustomButton>
       </form>
       <p className={styles["login-signup-text"]}>
         Don't have an account?{" "}
-        <LinkContainer
+        <Link
           to={{
             pathname: "/signup",
             search: redirect ? `?redirect=${redirect}` : "",
           }}
         >
           <span className={styles["login-signup-text__link"]}>Sign Up</span>
-        </LinkContainer>
+        </Link>
       </p>
     </div>
   );

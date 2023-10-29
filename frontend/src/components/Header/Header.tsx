@@ -3,7 +3,6 @@
 import logo from "../../assets/tech-trove-logo.svg";
 import ShoppingBagIcon from "../../assets/shopping_bag.svg?react";
 import PersonIcon from "../../assets/person.svg?react";
-import SearchIcon from "../../assets/search.svg?react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { cartScreenAction } from "../../store/cartScreenSlice";
@@ -46,13 +45,7 @@ const Header = () => {
         />
       )}
       <Link className={styles["header-logo-section"]} to="/">
-        <img
-          src={logo}
-          width="9%"
-          style={{ marginRight: "0.5rem" }}
-          alt="Logo"
-        />
-        <h3>TechTrove</h3>
+        <h1>TechTrove.</h1>
       </Link>
 
       <nav>
@@ -61,11 +54,10 @@ const Header = () => {
           className={styles["header-shopping-cart"]}
         >
           <ShoppingBagIcon />
-          {totalCartQuantity > 0 && (
-            <div className={styles["header-shopping-cart-badge"]}>
-              {totalCartQuantity}
-            </div>
-          )}
+
+          <div className={styles["header-shopping-cart-badge"]}>
+            {totalCartQuantity}
+          </div>
         </div>
         <div
           onClick={userClickHandler}
@@ -81,6 +73,8 @@ const Header = () => {
 };
 
 export default Header;
+
+//<img src={logo} width="9%" style={{ marginRight: "0.5rem" }} alt="Logo" />;
 
 // {userInfo ? (
 //   <NavDropdown title={userInfo.name} id="userName">

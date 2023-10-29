@@ -1,6 +1,16 @@
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .Main {
-  padding: 1.5rem 2rem;
+  padding: 2rem;
   margin-bottom: 3.5rem;
+}
+
+.Footer {
+  margin-top: auto;
 }
 
 @media screen and(max-width) {

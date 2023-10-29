@@ -20,6 +20,7 @@ import CustomModalDialog from "../../components/CustomModalDialog/CustomModalDia
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import apiSlice from "../../store/apiSlices/apiSlice";
+import BackButton from "../../components/UI/BackButton/BackButton";
 
 let updatingOrderId: undefined | string = undefined;
 const OrdersScreen = () => {
@@ -161,7 +162,7 @@ const OrdersScreen = () => {
   };
 
   return (
-    <>
+    <div className={styles["orders-screen-container"]}>
       {showDeleteDialog && (
         <CustomModalDialog
           message="Delete the Order?"
@@ -170,6 +171,7 @@ const OrdersScreen = () => {
           cancelClickHandler={() => setShowDeleteDialog(false)}
         />
       )}
+      <BackButton />
       <div className={styles["orders-container"]}>
         {orders &&
           orders.map((order: OrderType, index) => {
@@ -236,7 +238,7 @@ const OrdersScreen = () => {
             );
           })}
       </div>
-    </>
+    </div>
   );
 };
 

@@ -40,55 +40,6 @@
   font-size: 0.9rem;
 }
 
-/*Cart Quantity Controller*/
-.cart-items__qty-controller {
-  display: flex;
-  align-items: center;
-}
-
-.cart-items__qty-controller * {
-  height: 1.8rem;
-  margin: 0;
-  padding: 0;
-  border: none;
-}
-
-.cart-items__qty-controller p {
-  width: 1.5rem;
-  text-align: center;
-  border-radius: 0.5rem 0 0 0.5rem;
-  border: 0.5px solid rgb(198, 198, 198);
-}
-
-.cart-items__qty-controller p:nth-child(3) {
-  border-radius: 0 0.5rem 0.5rem 0;
-}
-
-/*- button*/
-.cart-items__qty-controller p:hover {
-  background-color: rgb(255, 223, 223);
-  cursor: pointer;
-}
-/*+ button*/
-.cart-items__qty-controller p:nth-child(3):hover {
-  background-color: rgb(225, 254, 244);
-}
-
-.cart-items__qty-controller > input {
-  font-size: 0.85rem;
-  width: 1.8rem;
-  border-radius: 0;
-  text-align: center;
-  border: 0.5px solid rgb(198, 198, 198);
-  border-left: 0;
-  border-right: 0;
-}
-
-.cart-items__qty-controller > input:focus,
-.cart-items__qty-controller > input :focus-visible {
-  outline: none;
-}
-
 @media screen and (max-width: 480px) {
   .cart-items__body > .cart-items__card {
     padding-right: 1rem;
@@ -117,17 +68,4 @@
 .cart-items__body {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
-}
-
-/*Disabling the input field controllers*/
-/* Chrome, Safari, Edge, Opera */
-.cart-items__qty-controller > input::-webkit-outer-spin-button,
-.cart-items__qty-controller > input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Firefox */
-.cart-items__qty-controller > input[type="number"] {
-  -moz-appearance: textfield;
 }

@@ -2,10 +2,9 @@ import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import styles from "./Rating.module.css";
 import { Fragment } from "react";
 
-const Rating: React.FC<{ rating: number; numReviews?: number }> = ({
-  rating,
-  numReviews,
-}) => {
+const Rating: React.FC<
+  React.HTMLProps<HTMLElement> & { rating: number; numReviews?: number }
+> = ({ rating, numReviews, className, ...otherProps }) => {
   function getStar(rating: number, index: number) {
     if (rating >= index + 1) {
       return <FaStar key={index} />;
@@ -20,14 +19,16 @@ const Rating: React.FC<{ rating: number; numReviews?: number }> = ({
     <Fragment key={index}>{getStar(rating, index)}</Fragment>
   ));
 
-  const reviewText = numReviews
-    ? `${numReviews} ${numReviews > 1 ? "reviews" : "review"}`
-    : "";
+  // const reviewText = numReviews
+  //   ? `${numReviews} ${numReviews > 1 ? "reviews" : "review"}`
+  //   : "";
 
   return (
-    <div className={styles.Rating}>
+    <div className={`${className} ${styles.Rating}`}>
       {stars}{" "}
-      {numReviews && <span style={{ fontSize: "0.85rem" }}>{reviewText}</span>}
+      {numReviews && (
+        <span style={{ fontSize: "0.85rem" }}>({numReviews})</span>
+      )}
     </div>
   );
 };

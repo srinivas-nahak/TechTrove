@@ -3,6 +3,7 @@ import styles from "./CartItemsBody.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store";
 import { cartAction } from "../../../store/cartSlice";
+import QuantityController from "../../../components/QuantityController/QuantityController";
 
 const CartItems: React.FC<{
   closeClickHandler?: () => void;
@@ -71,11 +72,13 @@ const CartItems: React.FC<{
                     <div className={styles["cart-items__price"]}>
                       ${item.product.price}
                     </div>
-                    <div className={styles["cart-items__qty-controller"]}>
-                      <p onClick={decrementHandler}>-</p>
-                      <input type="number" value={item.quantity} readOnly />
-                      <p onClick={incrementHandler}>+</p>
-                    </div>
+                    <QuantityController
+                      stockCount={item.product.countInStock}
+                      addedQuantity={item.quantity}
+                      incrementHandler={incrementHandler}
+                      decrementHandler={decrementHandler}
+                      variant="small"
+                    />
                   </div>
                 </Col>
               </Row>

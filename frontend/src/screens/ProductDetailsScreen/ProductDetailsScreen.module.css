@@ -1,0 +1,11 @@
+.product-block-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.suggested-products {
+  margin-top: 3.5rem;
+  & h1 {
+    text-align: center;
+  }
+}
