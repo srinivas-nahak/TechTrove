@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "main": "server.js",
+  "main": "server.ts",
   "scripts": {
     "build": "npm install && npm install --prefix ./frontend && npm run build --prefix ./frontend && tsc",
     "start": "nodemon --exec npx ts-node --esm backend/src/server.ts",

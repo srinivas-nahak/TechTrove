@@ -49,3 +49,5 @@ app.get("/", (req, res) => {
 //DB operations
 
 app.listen(port, () => console.log(`Server listening of ${port}`));
+
+export default app;
