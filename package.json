@@ -22,7 +22,6 @@
     "dotenv": "^16.3.1",
     "nodemon": "^3.0.1",
     "ts-node": "^10.9.1",
-    "tsc-watch": "^6.0.4",
     "typescript": "^5.2.2"
   },
   "dependencies": {
