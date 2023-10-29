@@ -75,7 +75,7 @@ const UserReviews = () => {
     <div className={styles["user-reviews-container"]}>
       <h1>What our Customers say!</h1>
       <div className={styles["user-reviews"]}>
-        {reviews.map((review, index) => (
+        {reviews.map((review) => (
           <div className={styles["user-review-item"]} key={review.userId}>
             <UserReviewItem review={review} />
           </div>

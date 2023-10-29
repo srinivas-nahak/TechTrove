@@ -10,7 +10,7 @@ import QuantityController from "../../../components/QuantityController/QuantityC
 
 const ProductBlock: React.FC<
   React.HTMLProps<HTMLElement> & { product: ProductType }
-> = ({ product, className, ...otherProps }) => {
+> = ({ product, className }) => {
   const [priceCounter, setPriceCounter] = useState(product.price);
   const qtyRef = useRef<HTMLInputElement | null>(null);
   const dispatch = useDispatch();

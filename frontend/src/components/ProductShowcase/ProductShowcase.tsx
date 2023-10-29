@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styles from "./ProductShowcase.module.css";
 import { useNavigate } from "react-router-dom";
 

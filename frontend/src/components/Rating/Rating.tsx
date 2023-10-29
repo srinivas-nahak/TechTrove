@@ -4,7 +4,7 @@ import { Fragment } from "react";
 
 const Rating: React.FC<
   React.HTMLProps<HTMLElement> & { rating: number; numReviews?: number }
-> = ({ rating, numReviews, className, ...otherProps }) => {
+> = ({ rating, numReviews, className }) => {
   function getStar(rating: number, index: number) {
     if (rating >= index + 1) {
       return <FaStar key={index} />;

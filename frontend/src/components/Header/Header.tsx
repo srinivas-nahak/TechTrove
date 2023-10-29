@@ -1,6 +1,5 @@
 /// <reference types="vite-plugin-svgr/client" />
 
-import logo from "../../assets/tech-trove-logo.svg";
 import ShoppingBagIcon from "../../assets/shopping_bag.svg?react";
 import PersonIcon from "../../assets/person.svg?react";
 import { useDispatch, useSelector } from "react-redux";
