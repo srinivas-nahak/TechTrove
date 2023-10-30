@@ -21,7 +21,7 @@ const ProductScreen = () => {
 
     const timeout = setTimeout(() => {
       setShowLoader(false);
-    }, 300);
+    }, 500);
 
     return () => clearTimeout(timeout);
   }, [location.pathname]);
