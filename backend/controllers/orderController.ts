@@ -27,7 +27,7 @@ const placeOrder = asyncHandler(async (req, res) => {
     });
 
     res.json({ message: "Order placed successfully!" });
-  } catch (error) {
+  } catch (error: any) {
     console.log(error);
 
     res.status(400);
@@ -46,7 +46,7 @@ const getPlacedOrders = asyncHandler(async (req, res) => {
       paidAt: -1,
     });
     res.json(placedOrders);
-  } catch (error) {
+  } catch (error: any) {
     res.status(400);
     throw new Error(error.message);
   }
@@ -61,7 +61,7 @@ const cancelOrder = asyncHandler(async (req, res) => {
   try {
     const deletedOrder = await Orders.findByIdAndRemove(orderId);
     res.json({ message: "Order deleted successfully!" });
-  } catch (error) {}
+  } catch (error: any) {}
 });
 
 //@desc     Get Placed Orders
@@ -73,7 +73,7 @@ const getOrdersAdmin = asyncHandler(async (req, res) => {
   try {
     const allOrders = await Orders.find();
     res.json(allOrders);
-  } catch (error) {
+  } catch (error: any) {
     res.status(400);
     throw new Error(error.message);
   }
@@ -100,7 +100,7 @@ const updateOrderStatus = asyncHandler(async (req, res) => {
 
     res.json({ updateOrder });
     //res.json({ message: "Order updated successfully!" });
-  } catch (error) {
+  } catch (error: any) {
     console.log(error);
 
     res.status(400);

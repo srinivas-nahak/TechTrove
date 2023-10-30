@@ -43,7 +43,7 @@ const signUpUser = asyncHandler(async (req, res) => {
     generateToken(res, newUser._id);
 
     res.json(newUser);
-  } catch (error) {
+  } catch (error: any) {
     let errorMessage = error.message;
 
     if (errorMessage.includes("E11000")) {
