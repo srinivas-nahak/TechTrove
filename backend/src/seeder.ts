@@ -32,7 +32,7 @@ async function importData() {
     console.log("Data Imported!!");
 
     process.exit();
-  } catch (error) {
+  } catch (error: any) {
     console.log(error.message);
     process.exit(1);
   }
@@ -47,7 +47,7 @@ async function destroyData() {
     console.log("Data destroyed!");
 
     process.exit();
-  } catch (error) {
+  } catch (error: any) {
     console.log(error.message);
     process.exit(1);
   }
