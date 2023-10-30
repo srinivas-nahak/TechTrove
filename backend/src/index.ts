@@ -6,7 +6,6 @@ import orderRoutes from "../routes/orderRoutes.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import connectDB from "../config/db.js";
-
 import dotenv from "dotenv";
 import { notFound, errorHandler } from "../middleware/errorMiddleware.js";
 
