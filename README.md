@@ -25,7 +25,7 @@ lorem@email.com
 - [x] Users can place orders.
 - [x] Users can check order status.
 - [x] Admins can update the order status.
-- [] Admins can upload products.
+- [ ] Admins can upload products.
 
 
 
