@@ -83,13 +83,13 @@
   text-align: left;
   color: white;
   position: absolute;
-  bottom: 5%;
-  left: 5%;
+  bottom: 1.5rem;
+  left: 1.5rem;
   z-index: 2;
   transition: all 0.3s ease-in-out;
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 768px) {
   .product-showcase-container {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
