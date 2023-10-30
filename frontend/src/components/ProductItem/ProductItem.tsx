@@ -25,6 +25,9 @@ const ProductItem: React.FC<{ product: ProductType }> = ({ product }) => {
 };
 
 export default ProductItem;
+
+///
+
 {
   /* <Card className={`my-3 ${styles["product-item"]}`}>
       <Link to={`/product/${product._id}`}>

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useGetProductQuery } from "../../store/apiSlices/productApiSlice";
 import { errorHandler } from "../../utils/errorHandler";
 import ProductBlock from "./ProductBlock/ProductBlock";
@@ -9,6 +9,23 @@ import styles from "./ProductDetailsScreen.module.css";
 import AllProductsScreen from "../AllProductsScreen/AllProductsScreen";
 
 const ProductScreen = () => {
+  const [showLoader, setShowLoader] = useState(false);
+
+  const location = useLocation();
+  //Scrolling to top on screen start
+  useEffect(() => {
+    window.scrollTo(0, 0);
+
+    //Showing Loader on path change for better ux
+    setShowLoader(true);
+
+    const timeout = setTimeout(() => {
+      setShowLoader(false);
+    }, 300);
+
+    return () => clearTimeout(timeout);
+  }, [location.pathname]);
+
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   const { id: productId } = useParams();
@@ -23,10 +40,6 @@ const ProductScreen = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, [screenWidth]);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const {
     data: product,
     isSuccess,
@@ -34,7 +47,7 @@ const ProductScreen = () => {
     error,
   } = useGetProductQuery(productId!);
 
-  if (isLoading) {
+  if (isLoading || showLoader) {
     return <Loader />;
   }
 
