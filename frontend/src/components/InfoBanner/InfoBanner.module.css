@@ -82,7 +82,7 @@
   .info-banner-container {
     display: flex;
     flex-direction: column-reverse;
-    height: 31rem;
+    height: 35rem;
   }
 
   .info-text-container {
@@ -92,6 +92,10 @@
 
   .info-img-container {
     width: 100%;
+  }
+
+  .info-text-container h1 {
+    font-size: 1.5rem;
   }
 
   .info-img-container img {
