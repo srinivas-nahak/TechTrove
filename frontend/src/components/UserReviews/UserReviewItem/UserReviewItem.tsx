@@ -13,7 +13,10 @@ const UserReviewItem: React.FC<
       <div className={styles["user-review-info"]}>
         <img src={review.userDisplayPicture} alt={review.name} />
         <p className={styles["user-review-info__username"]}>{review.name}</p>
-        <Rating rating={review.rating} />
+        <Rating
+          rating={review.rating}
+          className={styles["user-review-info__rating"]}
+        />
       </div>
 
       <p>{review.comment}</p>

@@ -6,6 +6,8 @@
   border: 1px solid var(--light-gray);
   padding-bottom: 0.5rem;
   transition: all 0.4s ease-in-out;
+  display: flex;
+  flex-direction: column;
 }
 
 /*Setting hover to other elements when main container is hovered*/

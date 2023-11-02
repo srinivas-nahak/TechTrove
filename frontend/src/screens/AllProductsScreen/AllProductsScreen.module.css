@@ -12,6 +12,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 2rem;
+  justify-content: space-between;
 }
 
 .product-categories {
@@ -51,4 +52,33 @@
 .product-items div {
   box-sizing: border-box;
   position: relative;
+}
+
+@media screen and (max-width: 890px) {
+  .product-categories {
+    flex: 1;
+    list-style: none;
+    justify-content: start;
+    overflow-x: scroll;
+    padding: 0;
+  }
+  .product-categories li {
+    margin-right: 0.1rem;
+  }
+
+  .product-categories li button {
+    width: 10.5rem;
+    background-color: transparent;
+    color: var(--primary-dark);
+    border: 2px solid var(--secondary-gray);
+  }
+
+  /*Hiding the Horizontal Scrollbar*/
+  .product-categories::-webkit-scrollbar {
+    width: 0.1em; /* Width of the scrollbar */
+  }
+
+  .product-categories::-webkit-scrollbar-thumb {
+    background-color: transparent; /* Color of the thumb */
+  }
 }

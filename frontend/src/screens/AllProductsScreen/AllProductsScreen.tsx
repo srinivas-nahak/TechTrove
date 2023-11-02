@@ -9,7 +9,7 @@ import { errorHandler } from "../../utils/errorHandler";
 import styles from "./AllProductsScreen.module.css";
 import BackButton from "../../components/UI/BackButton/BackButton";
 import CustomButton from "../../components/UI/CustomButton/CustomButton";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const AllProductsScreen: React.FC<{ showTrendingProducts?: boolean }> = ({
   showTrendingProducts,
@@ -38,6 +38,8 @@ const AllProductsScreen: React.FC<{ showTrendingProducts?: boolean }> = ({
   );
   const [showLoader, setShowLoader] = useState(false);
 
+  const categoriesContainerRef = useRef<HTMLUListElement | null>(null);
+
   categoryHeading = selectedCategory
     ? categories[selectedCategory as keyof typeof categories]
     : categoryHeading;
@@ -57,6 +59,21 @@ const AllProductsScreen: React.FC<{ showTrendingProducts?: boolean }> = ({
   const categoryClickHandler = (clickedCategory: string) => {
     setSelectedCategory(clickedCategory);
 
+    const targetCategory: HTMLElement | null = document.querySelector(
+      `[ref-key="${clickedCategory}"]`
+    );
+    //Scrolling to particular position
+    if (targetCategory) {
+      targetCategory.scrollIntoView({ block: "end" });
+
+      // Calculating the offset to center the button on the screen
+      const containerWidth = categoriesContainerRef.current?.offsetWidth;
+      const buttonWidth = targetCategory.offsetWidth;
+      const scrollLeft =
+        targetCategory.offsetLeft - (containerWidth! - buttonWidth);
+      categoriesContainerRef.current!.scrollLeft = scrollLeft;
+    }
+
     //Showing loader for interactive UX
     setShowLoader(true);
     setTimeout(() => setShowLoader(false), 500);
@@ -69,7 +86,10 @@ const AllProductsScreen: React.FC<{ showTrendingProducts?: boolean }> = ({
       {category && (
         <div className={styles["product-categories-container"]}>
           <BackButton />
-          <ul className={styles["product-categories"]}>
+          <ul
+            className={styles["product-categories"]}
+            ref={categoriesContainerRef}
+          >
             {Object.entries(categories).map(([categoryKey, categoryName]) => {
               const activeButtonClassName =
                 categoryKey === selectedCategory
@@ -77,7 +97,7 @@ const AllProductsScreen: React.FC<{ showTrendingProducts?: boolean }> = ({
                   : "";
 
               return (
-                <li key={categoryKey}>
+                <li key={categoryKey} ref-key={categoryKey}>
                   <CustomButton
                     onClick={() => categoryClickHandler(categoryKey)}
                     className={activeButtonClassName}
