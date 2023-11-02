@@ -61,6 +61,38 @@ const UserReviews = () => {
       comment:
         "A reliable tech store. Competitive prices, but delivery can be slow at times. Overall, a good place to buy tech from.",
     },
+    {
+      userId: "r8",
+      userDisplayPicture: "./images/user_imgs/emily_anderson.jpg",
+      rating: 5.0,
+      name: "Emily Anderson",
+      comment:
+        "Great store! I found the latest smartphone at an amazing price. Fast shipping and excellent customer service.",
+    },
+    {
+      userId: "r9",
+      userDisplayPicture: "./images/user_imgs/jacob_williams.jpg",
+      rating: 4.0,
+      name: "Jacob Williams",
+      comment:
+        "Good selection of tech products. Prices are competitive. The only downside is the slightly. Great experience overall!",
+    },
+    {
+      userId: "r10",
+      userDisplayPicture: "./images/user_imgs/olivia_mitchell.jpg",
+      rating: 3.5,
+      name: "Olivia Mitchell",
+      comment:
+        "Decent store. Product quality is okay, but customer service could be more responsive. But looking forward to explore.",
+    },
+    {
+      userId: "r11",
+      userDisplayPicture: "./images/user_imgs/choi_sing.jpg",
+      rating: 4.0,
+      name: "Choi Sing",
+      comment:
+        "I had a positive experience shopping here. The website is user-friendly, and the products arrived in good condition.",
+    },
   ];
 
   // useEffect(() => {
