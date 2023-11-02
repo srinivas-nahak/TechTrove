@@ -115,7 +115,9 @@ const AllProductsScreen: React.FC<{ showTrendingProducts?: boolean }> = ({
       ) : (
         <div className={styles["product-items"]}>
           {products?.map((product, index) => {
-            if (showTrendingProducts && index > 3) return;
+            if (showTrendingProducts && index % 3 === 0 && index !== 0) {
+              return;
+            }
 
             return <ProductItem product={product} key={product._id} />;
           })}

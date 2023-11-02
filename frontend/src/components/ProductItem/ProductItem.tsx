@@ -19,7 +19,7 @@ const ProductItem: React.FC<{ product: ProductType }> = ({ product }) => {
         <p>{product.name}</p>
       </Link>
 
-      <h3>${product.price}</h3>
+      <p className={styles["product-item-price"]}>${product.price}</p>
     </Card>
   );
 };

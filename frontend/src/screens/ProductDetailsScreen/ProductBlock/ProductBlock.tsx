@@ -46,11 +46,9 @@ const ProductBlock: React.FC<
 
   return (
     <div className={`${className} ${styles["product-details-container"]}`}>
-      <img
-        src={product.image}
-        alt={product.name}
-        className={styles["product-image"]}
-      />
+      <div className={styles["product-image-container"]}>
+        <img src={product.image} alt={product.name} />
+      </div>
 
       <div className={styles["product-details"]}>
         <h1 className={styles["product-title"]}>{product.name}</h1>

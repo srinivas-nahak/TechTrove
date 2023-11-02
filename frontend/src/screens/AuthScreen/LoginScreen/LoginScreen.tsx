@@ -26,7 +26,7 @@ const LoginScreen = () => {
   const {
     enteredValue: inputPassword,
     valueInputHandler: passwordInputHandler,
-  } = userFormValidator("123456");
+  } = userFormValidator("12345678");
 
   const errorText = (
     <p className="text-danger text-start">Invalid email or password!</p>

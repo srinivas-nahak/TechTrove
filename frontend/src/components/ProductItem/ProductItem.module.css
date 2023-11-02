@@ -10,6 +10,14 @@
   flex-direction: column;
 }
 
+#product-item-container img {
+  scale: 0.87;
+}
+
+#product-item-container p {
+  font-size: 1rem;
+}
+
 /*Setting hover to other elements when main container is hovered*/
 #product-item-container:hover {
   box-shadow: 0 0 0px 1.5px var(--light-gray);
@@ -49,18 +57,18 @@
   text-decoration: none;
   margin-top: 1rem;
   padding: 0;
-  padding-right: 2.5rem;
+  width: 13rem;
   font-weight: 400;
   line-height: 1.45rem;
 }
 
-#product-item-container h3 {
+.product-item-price {
   font-weight: 500;
   margin: 1rem 0;
 }
 
 .product-item-name,
-#product-item-container h3 {
+.product-item-price {
   font-size: 1.1rem;
   display: inline-block;
   margin-left: 1.5rem;
