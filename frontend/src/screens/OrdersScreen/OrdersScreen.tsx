@@ -21,6 +21,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import apiSlice from "../../store/apiSlices/apiSlice";
 import BackButton from "../../components/UI/BackButton/BackButton";
+import useGetScreenWidth from "../../hooks/useGetScreenWidth";
 
 let updatingOrderId: undefined | string = undefined;
 const OrdersScreen = () => {
@@ -29,6 +30,8 @@ const OrdersScreen = () => {
   const [selectedOrder, setSelectedOrder] = useState<number | undefined>(
     undefined
   );
+
+  const { screenWidth } = useGetScreenWidth();
 
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
@@ -171,7 +174,7 @@ const OrdersScreen = () => {
           cancelClickHandler={() => setShowDeleteDialog(false)}
         />
       )}
-      <BackButton />
+      {screenWidth > 550 && <BackButton />}
       <div className={styles["orders-container"]}>
         {orders &&
           orders.map((order: OrderType, index) => {

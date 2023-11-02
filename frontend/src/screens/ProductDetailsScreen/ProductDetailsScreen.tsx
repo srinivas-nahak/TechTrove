@@ -7,8 +7,11 @@ import BackButton from "../../components/UI/BackButton/BackButton";
 import { useEffect, useState } from "react";
 import styles from "./ProductDetailsScreen.module.css";
 import AllProductsScreen from "../AllProductsScreen/AllProductsScreen";
+import useGetScreenWidth from "../../hooks/useGetScreenWidth";
 
 const ProductScreen = () => {
+  const { screenWidth } = useGetScreenWidth();
+
   const [showLoader, setShowLoader] = useState(false);
 
   const location = useLocation();
@@ -26,19 +29,7 @@ const ProductScreen = () => {
     return () => clearTimeout(timeout);
   }, [location.pathname]);
 
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-
   const { id: productId } = useParams();
-
-  const handleResize = () => {
-    setScreenWidth(window.innerWidth);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, [screenWidth]);
 
   const {
     data: product,
