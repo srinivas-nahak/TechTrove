@@ -1,4 +1,4 @@
-import { FormEventHandler, useEffect, useRef } from "react";
+import { FormEventHandler, useEffect, useRef, useState } from "react";
 import CustomInputGroup from "../../components/CustomInputGroup/CustomInputGroup";
 import userFormValidator from "../../hooks/userFormValidator";
 import styles from "./ShippingScreen.module.css";
@@ -12,6 +12,10 @@ import { OrderType } from "../../utils/customTypes.js";
 import { btnLoaderAction } from "../../store/buttonLoaderSlice.js";
 import CustomModalDialog from "../../components/CustomModalDialog/CustomModalDialog.js";
 import { cartAction } from "../../store/cartSlice.js";
+import useGetScreenWidth from "../../hooks/useGetScreenWidth.js";
+import BackIcon from "../../assets/back.svg?react";
+import paypalIcon from "../../assets/paypal_logo.svg";
+import CustomButton from "../../components/UI/CustomButton/CustomButton.js";
 
 const ShippingScreen = () => {
   const navigate = useNavigate();
@@ -45,6 +49,11 @@ const ShippingScreen = () => {
       navigateHandler("/");
     }
   }, []);
+
+  //Converting order summary to accordion for smaller screens
+  const [openOrderSummary, setOpenOrderSummary] = useState(false);
+
+  const { screenWidth } = useGetScreenWidth();
 
   //Using custom hooks for Input Field states
   const { enteredValue: inputAddress, valueInputHandler: addressInputHandler } =
@@ -126,6 +135,30 @@ const ShippingScreen = () => {
     }
   };
 
+  const getStyle = () => {
+    //Open
+    if (openOrderSummary) {
+      return {
+        maxHeight: "999px",
+        marginTop: "0.5rem",
+        transition: "all 1s ease-in-out",
+      };
+    }
+
+    //Close
+    return {
+      maxHeight: "0px",
+      marginTop: "0.5rem",
+      transition: "all 0.8s cubic-bezier(0,1,0,1)",
+    };
+  };
+
+  const orderSummaryClickHandler = () => {
+    if (screenWidth <= 900) {
+      setOpenOrderSummary((currentOpenStatus) => !currentOpenStatus);
+    }
+  };
+
   return (
     <>
       {isSuccess && (
@@ -184,21 +217,56 @@ const ShippingScreen = () => {
             />
             {/* <CustomButton type="submit">Pay & Checkout</CustomButton> */}
           </form>
+          {screenWidth <= 900 && !openOrderSummary && (
+            <CustomButton
+              className={styles["cart-items__checkout-button"]}
+              onClick={orderPlaceHandler}
+            >
+              <p>
+                Pay with <img src={paypalIcon} />
+              </p>
+            </CustomButton>
+          )}
         </div>
-        <div className={styles["shipping-order-summary"]}>
-          <h1>Order Summary</h1>
-          <CartItemsFooter
-            clickHandler={orderPlaceHandler}
-            className={styles["shipping-order-summary__price"]}
-            showAllPrice={true}
-          />
-          <p
-            className={styles["shipping-order-summary__item-title"]}
-          >{`Selected Products(${cart.totalQuantity})`}</p>
-          <CartItemsBody
-            closeClickHandler={abortShippingHandler}
-            className={styles["shipping-order-summary__items"]}
-          />
+        <div
+          className={styles["shipping-order-summary"]}
+          onClick={orderSummaryClickHandler}
+        >
+          <div className={styles["shipping-order-summary-heading"]}>
+            <h1>Order Summary</h1>
+            {screenWidth <= 900 &&
+              [
+                <BackIcon
+                  style={
+                    openOrderSummary
+                      ? { rotate: "90deg" }
+                      : { rotate: "-90deg" }
+                  }
+                  key={Math.random()}
+                />,
+                <p key={Math.random()} className={styles.totalPrice}>
+                  ${cart.totalPrice}
+                </p>,
+              ].map((e) => e)}
+          </div>
+
+          <div
+            className={styles["shipping-order-summary-details-container"]}
+            style={getStyle()}
+          >
+            <CartItemsFooter
+              clickHandler={orderPlaceHandler}
+              className={styles["shipping-order-summary__price"]}
+              showAllPrice={true}
+            />
+            <p
+              className={styles["shipping-order-summary__item-title"]}
+            >{`Selected Products(${cart.totalQuantity})`}</p>
+            <CartItemsBody
+              closeClickHandler={abortShippingHandler}
+              className={styles["shipping-order-summary__items"]}
+            />
+          </div>
         </div>
       </div>
     </>

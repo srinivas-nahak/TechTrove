@@ -12,6 +12,11 @@ import CustomButton from "../../../components/UI/CustomButton/CustomButton";
 import { btnLoaderAction } from "../../../store/buttonLoaderSlice";
 
 const SignupScreen = () => {
+  //The screen was not scrolling to the top sometimes so doing it manually
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [signup, { isError, isLoading, error }] = useSignUpMutation();

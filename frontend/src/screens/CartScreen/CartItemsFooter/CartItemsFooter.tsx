@@ -32,7 +32,7 @@ const CartItemsFooter: React.FC<{
         <div className={cartItemClassName}>
           <p>Subtotal</p>
 
-          <p>${cart.itemsPrice}</p>
+          <p>${cart.totalPrice}</p>
         </div>
       )}
 

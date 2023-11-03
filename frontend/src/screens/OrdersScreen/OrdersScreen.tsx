@@ -67,10 +67,12 @@ const OrdersScreen = () => {
     },
   ] = useCancelOrderMutation();
 
+  //Showing Loader
   if (isOrderItemsLoading) {
     return <Loader />;
   }
 
+  //Showing no orders text
   if (!orders || orders?.length === 0) {
     return <h1 style={{ textAlign: "center" }}>No orders found!</h1>;
   }
@@ -84,7 +86,7 @@ const OrdersScreen = () => {
     });
   };
 
-  const orderHandler = async (order: OrderType) => {
+  const orderUpdateHandler = async (order: OrderType) => {
     updatingOrderId = order._id;
     if (userInfo.isAdmin) {
       //Mutating the order
@@ -94,7 +96,7 @@ const OrdersScreen = () => {
     }
   };
 
-  const cancelOrderHandler = async () => {
+  const cancelorderUpdateHandler = async () => {
     setShowDeleteDialog(false);
     await cancelOrder(updatingOrderId!);
     //updatingOrderId = undefined;
@@ -170,7 +172,7 @@ const OrdersScreen = () => {
         <CustomModalDialog
           message="Delete the Order?"
           dialogType="choice"
-          clickHandler={cancelOrderHandler}
+          clickHandler={cancelorderUpdateHandler}
           cancelClickHandler={() => setShowDeleteDialog(false)}
         />
       )}
@@ -220,7 +222,7 @@ const OrdersScreen = () => {
                       <span
                         onClick={(e) => {
                           e.stopPropagation();
-                          orderHandler(order);
+                          orderUpdateHandler(order);
                         }}
                       >
                         {userInfo.isAdmin ? (

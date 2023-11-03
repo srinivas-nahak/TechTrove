@@ -11,6 +11,11 @@ import CustomButton from "../../../components/UI/CustomButton/CustomButton.js";
 import { btnLoaderAction } from "../../../store/buttonLoaderSlice.js";
 
 const LoginScreen = () => {
+  //The screen was not scrolling to the top sometimes so doing it manually
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userInfo = useSelector((state: RootState) => state.authReducer);
