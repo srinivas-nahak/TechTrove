@@ -9,6 +9,9 @@
 .shipping-form {
   flex-basis: 45%;
 }
+.shipping-form h1 {
+  margin-bottom: 1rem;
+}
 
 .shipping-order-summary {
   flex-basis: 35%;
@@ -80,6 +83,7 @@
   }
 
   .cart-items__checkout-button {
+    margin-top: 1rem;
     background-color: #ffc439;
   }
   .cart-items__checkout-button:hover {

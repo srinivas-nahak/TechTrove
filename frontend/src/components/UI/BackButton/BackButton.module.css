@@ -22,6 +22,6 @@
 }
 
 .back-button > svg polygon {
-  stroke: violet !important;
-  stroke-width: 40;
+  stroke: var(--primary-dark);
+  stroke-width: 20;
 }

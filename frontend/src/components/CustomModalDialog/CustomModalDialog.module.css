@@ -60,3 +60,12 @@
 }
 
 /*Green - #36ba3c*/
+
+@media screen and (max-width: 700px) {
+  .modal-dialog-container {
+    width: 80%;
+  }
+  .modal-dialog__btn-container {
+    width: 100%;
+  }
+}
