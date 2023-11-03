@@ -14,11 +14,6 @@ import { useEffect, useRef, useState } from "react";
 const AllProductsScreen: React.FC<{ showTrendingProducts?: boolean }> = ({
   showTrendingProducts,
 }) => {
-  //The screen was not scrolling to the top sometimes so doing it manually
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   let categoryHeading = showTrendingProducts
     ? "You can also look at"
     : "Our Top Picks";
@@ -32,6 +27,15 @@ const AllProductsScreen: React.FC<{ showTrendingProducts?: boolean }> = ({
   };
 
   const { category } = useParams();
+
+  //The screen was not scrolling to the top sometimes so doing it manually
+  useEffect(() => {
+    window.scrollTo(0, 0);
+
+    if (category) {
+      scrollToCategory(category);
+    }
+  }, []);
 
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(
     category
@@ -59,6 +63,14 @@ const AllProductsScreen: React.FC<{ showTrendingProducts?: boolean }> = ({
   const categoryClickHandler = (clickedCategory: string) => {
     setSelectedCategory(clickedCategory);
 
+    scrollToCategory(clickedCategory);
+
+    //Showing loader for interactive UX
+    setShowLoader(true);
+    setTimeout(() => setShowLoader(false), 500);
+  };
+
+  const scrollToCategory = (clickedCategory: string) => {
     const targetCategory: HTMLElement | null = document.querySelector(
       `[ref-key="${clickedCategory}"]`
     );
@@ -73,10 +85,6 @@ const AllProductsScreen: React.FC<{ showTrendingProducts?: boolean }> = ({
         targetCategory.offsetLeft - (containerWidth! - buttonWidth);
       categoriesContainerRef.current!.scrollLeft = scrollLeft;
     }
-
-    //Showing loader for interactive UX
-    setShowLoader(true);
-    setTimeout(() => setShowLoader(false), 500);
   };
 
   return (

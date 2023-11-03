@@ -56,8 +56,6 @@
 
 @media screen and (max-width: 890px) {
   .product-categories {
-    flex: 1;
-    list-style: none;
     justify-content: start;
     overflow-x: scroll;
     padding: 0;
