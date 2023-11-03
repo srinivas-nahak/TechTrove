@@ -1,8 +1,10 @@
 @import "../../../index.css";
 
 .product-details-container {
+  width: 100%;
   display: flex;
   gap: 2.5rem;
+  align-items: center;
   /* justify-content: center; */
 }
 
@@ -72,9 +74,10 @@
   .product-details-container {
     gap: 2rem;
     flex-direction: column;
+    box-sizing: border-box;
   }
 
-  .product-image {
+  .product-image-container {
     width: 100%;
   }
 

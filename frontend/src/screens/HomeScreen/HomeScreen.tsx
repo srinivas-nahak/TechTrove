@@ -8,7 +8,7 @@ const HomeScreen = () => {
   return (
     <div className={styles["home-screen-container"]}>
       <ProductShowcase />
-      <AllProductsScreen showTrendingProducts={true} />
+      <AllProductsScreen />
       <InfoBanner />
       <UserReviews />
     </div>
