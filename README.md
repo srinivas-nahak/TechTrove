@@ -4,7 +4,7 @@ It's a full-stack e-commerce react app where users can place orders by creating 
 
 ## Demo
 
-https://tech-trove.vercel.app/
+https://techtroveinf.vercel.app/
 
 ## Demo Credentials
 
